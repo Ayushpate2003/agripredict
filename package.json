@@ -58,7 +58,8 @@
   "scripts": {
     "start": "vite",
     "build": "vite build --sourcemap",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test:gee": "node scripts/test-gee-config.js"
   },
   "eslintConfig": {
     "extends": [
