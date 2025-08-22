@@ -3,178 +3,178 @@ import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
 
 const RegionalSupport = () => {
-  const [selectedRegion, setSelectedRegion] = useState('maharashtra');
+  const [selectedRegion, setSelectedRegion] = useState('midwest');
 
   const regions = [
     {
-      id: 'maharashtra',
-      name: 'Maharashtra',
-      states: ['Maharashtra'],
-      primaryCrops: ['Sugarcane', 'Cotton', 'Soybean'],
+      id: 'midwest',
+      name: 'Midwest',
+      states: ['Illinois', 'Iowa', 'Indiana', 'Ohio', 'Michigan', 'Wisconsin', 'Minnesota', 'Missouri'],
+      primaryCrops: ['Corn', 'Soybeans', 'Wheat'],
       supportCenter: {
-        city: 'Mumbai, Maharashtra',
-        phone: '+91 (22) 555-0123',
-        email: 'maharashtra@agripredict.com',
-        hours: 'Mon-Sun: 9:00 AM - 7:00 PM IST'
+        city: 'Chicago, IL',
+        phone: '+1 (312) 555-0123',
+        email: 'midwest@agripredict.com',
+        hours: 'Mon-Sun: 5:00 AM - 9:00 PM CST'
       },
       localPartners: [
         {
-          name: 'Maharashtra Agricultural University',
+          name: 'University of Illinois Extension',
           type: 'Academic Partner',
-          contact: 'extension@mau.ac.in'
+          contact: 'extension@illinois.edu'
         },
         {
-          name: 'Maharashtra State Agricultural Research',
+          name: 'Iowa State Agricultural Research',
           type: 'Research Partner',
-          contact: 'research@msar.gov.in'
+          contact: 'research@iastate.edu'
         },
         {
-          name: 'Maharashtra Farmers Cooperative',
+          name: 'Midwest Farmers Cooperative',
           type: 'Industry Partner',
-          contact: 'info@maharashtrafarmers.com'
+          contact: 'info@midwestcoop.com'
         }
       ],
       specialists: [
         {
-          name: 'Dr. Rajesh Patel',
-          role: 'Sugarcane Specialist',
+          name: 'Dr. Sarah Johnson',
+          role: 'Corn Specialist',
           avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Sugarcane yield optimization, pest management'
+          expertise: 'Corn yield optimization, pest management'
         },
         {
-          name: 'Priya Sharma',
-          role: 'Cotton Expert',
+          name: 'Mike Chen',
+          role: 'Soybean Expert',
           avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Cotton disease prediction, soil health'
+          expertise: 'Soybean disease prediction, soil health'
         }
       ]
     },
     {
-      id: 'rajasthan',
-      name: 'Rajasthan',
-      states: ['Rajasthan'],
-      primaryCrops: ['Wheat', 'Bajra', 'Mustard'],
+      id: 'great-plains',
+      name: 'Great Plains',
+      states: ['Kansas', 'Nebraska', 'Oklahoma', 'Texas', 'Colorado', 'Wyoming', 'Montana', 'North Dakota', 'South Dakota'],
+      primaryCrops: ['Wheat', 'Corn', 'Sorghum', 'Cotton'],
       supportCenter: {
-        city: 'Jaipur, Rajasthan',
-        phone: '+91 (141) 555-0456',
-        email: 'rajasthan@agripredict.com',
-        hours: 'Mon-Sun: 9:00 AM - 7:00 PM IST'
+        city: 'Kansas City, MO',
+        phone: '+1 (816) 555-0456',
+        email: 'greatplains@agripredict.com',
+        hours: 'Mon-Sun: 6:00 AM - 8:00 PM CST'
       },
       localPartners: [
         {
-          name: 'Rajasthan Agricultural University',
+          name: 'Kansas State Agricultural Extension',
           type: 'Academic Partner',
-          contact: 'extension@rau.ac.in'
+          contact: 'extension@ksu.edu'
         },
         {
-          name: 'Rajasthan State Agricultural Research',
+          name: 'Great Plains Research Institute',
           type: 'Research Partner',
-          contact: 'research@rsar.gov.in'
+          contact: 'research@gpri.org'
         },
         {
-          name: 'Rajasthan Farmers Cooperative',
+          name: 'Plains Grain Association',
           type: 'Industry Partner',
-          contact: 'info@rajasthanfarmers.com'
+          contact: 'info@plainsgrain.org'
         }
       ],
       specialists: [
         {
-          name: 'Dr. Amit Kumar',
+          name: 'Dr. Robert Martinez',
           role: 'Wheat Specialist',
           avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Wheat yield optimization, drought resistance'
+          expertise: 'Winter wheat, drought resistance'
         },
         {
-          name: 'Sunita Devi',
-          role: 'Bajra Expert',
+          name: 'Jennifer Lee',
+          role: 'Cotton Expert',
           avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Bajra disease prediction, irrigation management'
+          expertise: 'Cotton yield prediction, irrigation management'
         }
       ]
     },
     {
-      id: 'gujarat',
-      name: 'Gujarat',
-      states: ['Gujarat'],
-      primaryCrops: ['Groundnut', 'Cotton', 'Wheat'],
+      id: 'california',
+      name: 'California',
+      states: ['California'],
+      primaryCrops: ['Almonds', 'Grapes', 'Strawberries', 'Lettuce', 'Tomatoes'],
       supportCenter: {
-        city: 'Ahmedabad, Gujarat',
-        phone: '+91 (79) 555-0789',
-        email: 'gujarat@agripredict.com',
-        hours: 'Mon-Sun: 9:00 AM - 7:00 PM IST'
+        city: 'Fresno, CA',
+        phone: '+1 (559) 555-0789',
+        email: 'california@agripredict.com',
+        hours: 'Mon-Sun: 5:00 AM - 10:00 PM PST'
       },
       localPartners: [
         {
-          name: 'Gujarat Agricultural University',
+          name: 'UC Davis Agricultural Extension',
           type: 'Academic Partner',
-          contact: 'extension@gau.ac.in'
+          contact: 'extension@ucdavis.edu'
         },
         {
-          name: 'Gujarat Agricultural Research Institute',
+          name: 'California Agricultural Research Institute',
           type: 'Research Partner',
-          contact: 'research@gari.org'
+          contact: 'research@cari.org'
         },
         {
-          name: 'Gujarat Farmers Association',
+          name: 'California Growers Association',
           type: 'Industry Partner',
-          contact: 'info@gujaratfarmers.com'
+          contact: 'info@cagrowers.com'
         }
       ],
       specialists: [
         {
-          name: 'Dr. Meera Patel',
-          role: 'Groundnut Expert',
+          name: 'Dr. Maria Rodriguez',
+          role: 'Specialty Crops Expert',
           avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Groundnut yield optimization, precision agriculture'
+          expertise: 'Fruit and nut crops, precision agriculture'
         },
         {
-          name: 'Ramesh Shah',
-          role: 'Cotton Specialist',
+          name: 'David Kim',
+          role: 'Vegetable Specialist',
           avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Cotton production, pest management'
+          expertise: 'Vegetable production, greenhouse management'
         }
       ]
     },
     {
-      id: 'uttar-pradesh',
-      name: 'Uttar Pradesh',
-      states: ['Uttar Pradesh'],
-      primaryCrops: ['Rice', 'Wheat', 'Sugarcane'],
+      id: 'southeast',
+      name: 'Southeast',
+      states: ['Georgia', 'Florida', 'Alabama', 'Mississippi', 'Louisiana', 'Arkansas', 'Tennessee', 'Kentucky', 'North Carolina', 'South Carolina'],
+      primaryCrops: ['Cotton', 'Peanuts', 'Rice', 'Citrus', 'Tobacco'],
       supportCenter: {
-        city: 'Lucknow, Uttar Pradesh',
-        phone: '+91 (522) 555-0321',
-        email: 'uttarpradesh@agripredict.com',
-        hours: 'Mon-Sun: 9:00 AM - 7:00 PM IST'
+        city: 'Atlanta, GA',
+        phone: '+1 (404) 555-0321',
+        email: 'southeast@agripredict.com',
+        hours: 'Mon-Sun: 6:00 AM - 9:00 PM EST'
       },
       localPartners: [
         {
-          name: 'Uttar Pradesh Agricultural University',
+          name: 'University of Georgia Extension',
           type: 'Academic Partner',
-          contact: 'extension@upau.ac.in'
+          contact: 'extension@uga.edu'
         },
         {
-          name: 'Uttar Pradesh Agricultural Research Center',
+          name: 'Southeast Agricultural Research Center',
           type: 'Research Partner',
-          contact: 'research@uparc.org'
+          contact: 'research@searc.org'
         },
         {
-          name: 'Uttar Pradesh Farmers Association',
+          name: 'Southern Cotton Growers',
           type: 'Industry Partner',
-          contact: 'info@upfarmers.org'
+          contact: 'info@southerncotton.org'
         }
       ],
       specialists: [
         {
-          name: 'Dr. Anil Singh',
-          role: 'Rice & Wheat Expert',
+          name: 'Dr. James Wilson',
+          role: 'Cotton & Peanut Expert',
           avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Rice disease management, wheat production'
+          expertise: 'Cotton disease management, peanut production'
         },
         {
-          name: 'Kavita Verma',
-          role: 'Sugarcane Specialist',
+          name: 'Lisa Thompson',
+          role: 'Citrus Specialist',
           avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
-          expertise: 'Sugarcane health monitoring, pest prediction'
+          expertise: 'Citrus health monitoring, pest prediction'
         }
       ]
     }

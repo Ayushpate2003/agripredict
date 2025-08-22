@@ -24,11 +24,11 @@ const YieldPredictionChart = ({ predictionData, selectedCrop }) => {
           <div className="space-y-1">
             <p className="text-sm text-primary">
               <span className="inline-block w-3 h-3 bg-primary rounded-full mr-2"></span>
-              Predicted: {payload?.[0]?.value} q/ha
+              Predicted: {payload?.[0]?.value} bu/acre
             </p>
             <p className="text-sm text-secondary">
               <span className="inline-block w-3 h-3 bg-secondary rounded-full mr-2"></span>
-              Historical: {payload?.[1]?.value} q/ha
+              Historical: {payload?.[1]?.value} bu/acre
             </p>
             <p className="text-sm text-accent">
               Confidence: {payload?.[0]?.payload?.confidence}%
@@ -85,7 +85,7 @@ const YieldPredictionChart = ({ predictionData, selectedCrop }) => {
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
-                label={{ value: 'Yield (q/ha)', angle: -90, position: 'insideLeft' }}
+                label={{ value: 'Yield (bu/acre)', angle: -90, position: 'insideLeft' }}
               />
               <Tooltip content={<CustomTooltip />} />
               <Line
@@ -114,7 +114,7 @@ const YieldPredictionChart = ({ predictionData, selectedCrop }) => {
               <Icon name="Target" size={16} className="text-primary" />
               <span className="text-sm font-medium text-primary">Peak Yield</span>
             </div>
-            <p className="text-2xl font-bold text-foreground">48 q/ha</p>
+            <p className="text-2xl font-bold text-foreground">200 bu/acre</p>
             <p className="text-xs text-muted-foreground">Expected in October</p>
           </div>
 

@@ -9,20 +9,20 @@ const SuccessStories = ({ selectedRegion, regions }) => {
   const stories = [
     {
       id: 1,
-      farmer: "Rajesh Patel",
-      farm: "Patel Sugarcane Farm",
-      location: `${region?.name}`,
-      crop: "Sugarcane",
-      improvement: "28% yield increase",
+      farmer: "Sarah Johnson",
+      farm: "Johnson Family Farm",
+      location: `${region?.name} County`,
+      crop: "Corn",
+      improvement: "23% yield increase",
       year: "2024",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
       farmImage: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=300&fit=crop",
-      story: `After implementing AgriPredict's soil recommendations and weather-based planting schedule, we saw remarkable improvements in our sugarcane yields. The precision timing for fertilizer application based on local weather patterns made all the difference.\n\nThe regional insights helped us understand our soil's unique characteristics and adjust our farming practices accordingly. We're now planning to expand our operation based on these data-driven decisions.`,
+      story: `After implementing AgriPredict's soil recommendations and weather-based planting schedule, we saw remarkable improvements in our corn yields. The precision timing for fertilizer application based on local weather patterns made all the difference.\n\nThe regional insights helped us understand our soil's unique characteristics and adjust our farming practices accordingly. We're now planning to expand our operation based on these data-driven decisions.`,
       metrics: [
-        { label: "Yield Increase", value: "28%", icon: "TrendingUp" },
-        { label: "Cost Reduction", value: "18%", icon: "DollarSign" },
-        { label: "Water Savings", value: "22%", icon: "Droplets" },
-        { label: "ROI", value: "380%", icon: "Target" }
+        { label: "Yield Increase", value: "23%", icon: "TrendingUp" },
+        { label: "Cost Reduction", value: "15%", icon: "DollarSign" },
+        { label: "Water Savings", value: "18%", icon: "Droplets" },
+        { label: "ROI", value: "340%", icon: "Target" }
       ],
       techniques: [
         "Precision fertilizer timing",
@@ -33,19 +33,19 @@ const SuccessStories = ({ selectedRegion, regions }) => {
     },
     {
       id: 2,
-      farmer: "Priya Sharma",
-      farm: "Sharma Organic Farms",
-      location: `${region?.name}`,
-      crop: "Cotton",
-      improvement: "35% yield increase",
+      farmer: "Michael Rodriguez",
+      farm: "Rodriguez Organic Farms",
+      location: `${region?.name} County`,
+      crop: "Soybeans",
+      improvement: "31% yield increase",
       year: "2024",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       farmImage: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=600&h=300&fit=crop",
-      story: `Transitioning to organic farming seemed risky, but AgriPredict's regional data showed our soil composition was perfect for organic cotton. The platform's weather intelligence helped us time our organic treatments perfectly.\n\nThe peer comparison feature showed us what other organic farmers in our region were achieving, giving us confidence in our approach. Now we're mentoring other farmers making the organic transition.`,
+      story: `Transitioning to organic farming seemed risky, but AgriPredict's regional data showed our soil composition was perfect for organic soybeans. The platform's weather intelligence helped us time our organic treatments perfectly.\n\nThe peer comparison feature showed us what other organic farmers in our region were achieving, giving us confidence in our approach. Now we're mentoring other farmers making the organic transition.`,
       metrics: [
-        { label: "Yield Increase", value: "35%", icon: "TrendingUp" },
-        { label: "Premium Price", value: "50%", icon: "DollarSign" },
-        { label: "Soil Health", value: "+32%", icon: "Leaf" },
+        { label: "Yield Increase", value: "31%", icon: "TrendingUp" },
+        { label: "Premium Price", value: "45%", icon: "DollarSign" },
+        { label: "Soil Health", value: "+28%", icon: "Leaf" },
         { label: "Certification", value: "100%", icon: "Award" }
       ],
       techniques: [
@@ -57,20 +57,20 @@ const SuccessStories = ({ selectedRegion, regions }) => {
     },
     {
       id: 3,
-      farmer: "Amit Kumar",
-      farm: "Kumar Sustainable Agriculture",
-      location: `${region?.name}`,
-      crop: "Rice",
-      improvement: "22% yield increase",
+      farmer: "David Chen",
+      farm: "Chen Sustainable Agriculture",
+      location: `${region?.name} County`,
+      crop: "Wheat",
+      improvement: "19% yield increase",
       year: "2024",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       farmImage: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=300&fit=crop",
-      story: `As a third-generation farmer, I was skeptical about AI predictions. But AgriPredict's regional insights revealed patterns in our local climate that I hadn't noticed in 30 years of farming.\n\nThe platform's recommendations for drought-resistant rice varieties and precision irrigation timing helped us navigate the challenging 2024 growing season. We're now the top rice producer in our district.`,
+      story: `As a third-generation farmer, I was skeptical about AI predictions. But AgriPredict's regional insights revealed patterns in our local climate that I hadn't noticed in 30 years of farming.\n\nThe platform's recommendations for drought-resistant wheat varieties and precision irrigation timing helped us navigate the challenging 2024 growing season. We're now the top wheat producer in our county.`,
       metrics: [
-        { label: "Yield Increase", value: "22%", icon: "TrendingUp" },
-        { label: "Water Efficiency", value: "28%", icon: "Droplets" },
+        { label: "Yield Increase", value: "19%", icon: "TrendingUp" },
+        { label: "Water Efficiency", value: "25%", icon: "Droplets" },
         { label: "Quality Grade", value: "A+", icon: "Star" },
-        { label: "Market Price", value: "+15%", icon: "DollarSign" }
+        { label: "Market Price", value: "+12%", icon: "DollarSign" }
       ],
       techniques: [
         "Drought-resistant varieties",
@@ -175,7 +175,34 @@ const SuccessStories = ({ selectedRegion, regions }) => {
             </div>
           </div>
 
-
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Other Success Stories</h4>
+            <div className="space-y-3">
+              {stories?.map((story, index) => (
+                <button
+                  key={story?.id}
+                  onClick={() => setSelectedStory(index)}
+                  className={`w-full text-left p-3 rounded-lg growth-transition ${
+                    selectedStory === index
+                      ? 'bg-primary/10 border border-primary/20' :'bg-muted/30 hover:bg-muted/50'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <Image
+                      src={story?.avatar}
+                      alt={story?.farmer}
+                      className="w-10 h-10 rounded-full object-cover"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-foreground truncate">{story?.farmer}</div>
+                      <div className="text-sm text-muted-foreground truncate">{story?.crop}</div>
+                    </div>
+                    <div className="text-sm font-bold text-success">{story?.improvement}</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

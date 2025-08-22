@@ -56,7 +56,7 @@ const MetricsBar = () => {
     {
       icon: 'MapPin',
       value: formatNumber(animatedMetrics?.acres, 'M'),
-              label: 'Hectares Analyzed',
+      label: 'Acres Analyzed',
       description: 'Agricultural land under AI monitoring',
       color: 'text-primary'
     },

@@ -43,10 +43,10 @@ const FeaturesSection = () => {
       visualization: {
         type: 'crop-zones',
         data: [
-          { region: 'Maharashtra', sugarcane: 45, cotton: 35, wheat: 40 },
-          { region: 'Rajasthan', wheat: 40, bajra: 25, mustard: 30 },
-          { region: 'Gujarat', groundnut: 52, cotton: 38, wheat: 42 },
-          { region: 'Uttar Pradesh', rice: 42, wheat: 45, sugarcane: 48 }
+          { region: 'Midwest', corn: 185, soybeans: 52, wheat: 45 },
+          { region: 'Great Plains', corn: 165, soybeans: 48, wheat: 55 },
+          { region: 'California', corn: 210, soybeans: 45, wheat: 42 },
+          { region: 'Southeast', corn: 175, soybeans: 50, wheat: 48 }
         ]
       },
       link: '/regional-insights-location-specific-intelligence'
@@ -107,18 +107,18 @@ const FeaturesSection = () => {
             <div key={index} className="bg-muted/50 rounded-lg p-4 space-y-2">
               <div className="font-medium text-sm">{region?.region}</div>
               <div className="space-y-1 text-xs">
-                                  <div className="flex justify-between">
-                    <span>Sugarcane:</span>
-                    <span className="font-medium">{region?.sugarcane} q/ha</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Cotton:</span>
-                    <span className="font-medium">{region?.cotton} q/ha</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Wheat:</span>
-                    <span className="font-medium">{region?.wheat} q/ha</span>
-                  </div>
+                <div className="flex justify-between">
+                  <span>Corn:</span>
+                  <span className="font-medium">{region?.corn} bu/acre</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Soybeans:</span>
+                  <span className="font-medium">{region?.soybeans} bu/acre</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Wheat:</span>
+                  <span className="font-medium">{region?.wheat} bu/acre</span>
+                </div>
               </div>
             </div>
           ))}

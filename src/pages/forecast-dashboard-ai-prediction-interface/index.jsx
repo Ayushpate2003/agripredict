@@ -9,8 +9,6 @@ import ScenarioComparison from './components/ScenarioComparison';
 import RiskAssessmentMatrix from './components/RiskAssessmentMatrix';
 import RealtimeWeatherWidget from './components/RealtimeWeatherWidget';
 import ExportReportModal from './components/ExportReportModal';
-import YieldPredictionTimeline from '../../components/YieldPredictionTimeline';
-import LocationSelector from '../../components/LocationSelector';
 
 const ForecastDashboard = () => {
   const [predictionData, setPredictionData] = useState(null);
@@ -19,7 +17,6 @@ const ForecastDashboard = () => {
   const [dashboardView, setDashboardView] = useState('overview');
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState({ lat: 19.0760, lng: 72.8777 }); // Default to Mumbai
 
   useEffect(() => {
     // Set page title
@@ -30,26 +27,13 @@ const ForecastDashboard = () => {
     setIsLoading(true);
     setSelectedCrop(formData?.crop);
     
-    // Update current location if coordinates are provided
-    if (formData?.latitude && formData?.longitude) {
-      setCurrentLocation({
-        lat: parseFloat(formData.latitude),
-        lng: parseFloat(formData.longitude)
-      });
-    }
-    
     // Simulate AI prediction generation
     await new Promise(resolve => setTimeout(resolve, 3000));
     
-    // Mock prediction data with location coordinates
+    // Mock prediction data
     const mockPrediction = {
       crop: formData?.crop,
       location: formData?.location,
-      coordinates: {
-        lat: parseFloat(formData?.latitude) || currentLocation.lat,
-        lng: parseFloat(formData?.longitude) || currentLocation.lng
-      },
-      fieldSize: formData?.fieldSize,
       predictedYield: 195,
       confidence: 94,
       riskLevel: 'moderate',
@@ -64,22 +48,9 @@ const ForecastDashboard = () => {
     setIsLoading(false);
   };
 
-  const handleLocationChange = (location) => {
-    setCurrentLocation(location);
-    
-    // Update prediction data with new location if it exists
-    if (predictionData) {
-      setPredictionData(prev => ({
-        ...prev,
-        coordinates: location
-      }));
-    }
-  };
-
   const dashboardViews = [
     { id: 'overview', name: 'Overview', icon: 'LayoutDashboard' },
     { id: 'predictions', name: 'Predictions', icon: 'TrendingUp' },
-    { id: 'timeline', name: 'Yield Timeline', icon: 'Calendar' },
     { id: 'weather', name: 'Weather', icon: 'Cloud' },
     { id: 'scenarios', name: 'Scenarios', icon: 'GitCompare' },
     { id: 'risks', name: 'Risk Analysis', icon: 'Shield' }
@@ -94,20 +65,10 @@ const ForecastDashboard = () => {
             <WeatherImpactAnalysis />
           </div>
         );
-      case 'timeline':
-        return (
-          <div className="space-y-6">
-            <YieldPredictionTimeline 
-              location={predictionData?.coordinates || currentLocation} 
-              selectedCrop={selectedCrop}
-              fieldSize={predictionData?.fieldSize}
-            />
-          </div>
-        );
       case 'weather':
         return (
           <div className="space-y-6">
-            <RealtimeWeatherWidget location={predictionData?.coordinates} />
+            <RealtimeWeatherWidget location={predictionData?.location} />
             <WeatherImpactAnalysis />
           </div>
         );
@@ -130,17 +91,12 @@ const ForecastDashboard = () => {
           <div className="space-y-6">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               <YieldPredictionChart predictionData={predictionData} selectedCrop={selectedCrop} />
-              <RealtimeWeatherWidget location={predictionData?.coordinates || currentLocation} />
+              <RealtimeWeatherWidget location={predictionData?.location} />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               <WeatherImpactAnalysis />
               <ScenarioComparison />
             </div>
-            <YieldPredictionTimeline 
-              location={predictionData?.coordinates} 
-              selectedCrop={selectedCrop}
-              fieldSize={predictionData?.fieldSize}
-            />
             <RiskAssessmentMatrix />
           </div>
         );
@@ -164,10 +120,6 @@ const ForecastDashboard = () => {
                 </p>
               </div>
               <div className="flex items-center space-x-3">
-                <LocationSelector 
-                  onLocationChange={handleLocationChange}
-                  currentLocation={currentLocation}
-                />
                 <Button
                   variant="outline"
                   iconName="RefreshCw"
@@ -255,7 +207,7 @@ const ForecastDashboard = () => {
                           </div>
                           <div>
                             <p className="text-sm text-muted-foreground">Predicted Yield</p>
-                            <p className="text-xl font-bold text-foreground">{predictionData?.predictedYield} q/ha</p>
+                            <p className="text-xl font-bold text-foreground">{predictionData?.predictedYield} bu/acre</p>
                           </div>
                         </div>
                       </div>

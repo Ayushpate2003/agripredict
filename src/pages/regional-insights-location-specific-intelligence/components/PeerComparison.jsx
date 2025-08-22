@@ -23,10 +23,10 @@ const PeerComparison = ({ selectedRegion, regions }) => {
 
   const benchmarkMetrics = [
     {
-      title: 'Yield per Hectare',
-      yourValue: '38 q/ha',
-      regionAvg: '35 q/ha',
-      topPerformers: '45 q/ha',
+      title: 'Yield per Acre',
+      yourValue: '158 bu/acre',
+      regionAvg: '145 bu/acre',
+      topPerformers: '185 bu/acre',
       percentile: '68th',
       trend: 'up',
       improvement: '+9%',
@@ -34,9 +34,9 @@ const PeerComparison = ({ selectedRegion, regions }) => {
     },
     {
       title: 'Production Cost',
-      yourValue: '₹18,000/ha',
-      regionAvg: '₹19,400/ha',
-      topPerformers: '₹17,000/ha',
+      yourValue: '$445/acre',
+      regionAvg: '$480/acre',
+      topPerformers: '$420/acre',
       percentile: '72nd',
       trend: 'down',
       improvement: '-7%',
@@ -44,9 +44,9 @@ const PeerComparison = ({ selectedRegion, regions }) => {
     },
     {
       title: 'Profit Margin',
-      yourValue: '₹43,700/ha',
-      regionAvg: '₹38,400/ha',
-      topPerformers: '₹50,600/ha',
+      yourValue: '$1,080/acre',
+      regionAvg: '$950/acre',
+      topPerformers: '$1,250/acre',
       percentile: '75th',
       trend: 'up',
       improvement: '+14%',
@@ -68,7 +68,7 @@ const PeerComparison = ({ selectedRegion, regions }) => {
     {
       area: 'Fertilizer Optimization',
       potential: '+12% yield',
-              investment: '₹1,000/ha',
+      investment: '$25/acre',
       payback: '1.2 seasons',
       difficulty: 'Easy',
       description: 'Adjust nitrogen timing based on soil tests and weather patterns'
@@ -76,7 +76,7 @@ const PeerComparison = ({ selectedRegion, regions }) => {
     {
       area: 'Irrigation Efficiency',
       potential: '-15% water use',
-              investment: '₹7,300/ha',
+      investment: '$180/acre',
       payback: '2.8 seasons',
       difficulty: 'Moderate',
       description: 'Install precision irrigation system with soil moisture sensors'
@@ -84,7 +84,7 @@ const PeerComparison = ({ selectedRegion, regions }) => {
     {
       area: 'Seed Variety Selection',
       potential: '+8% yield',
-              investment: '₹600/ha',
+      investment: '$15/acre',
       payback: '1 season',
       difficulty: 'Easy',
       description: 'Switch to varieties better suited for local soil conditions'
@@ -92,7 +92,7 @@ const PeerComparison = ({ selectedRegion, regions }) => {
     {
       area: 'Harvest Timing',
       potential: '+5% quality premium',
-              investment: '₹0/ha',
+      investment: '$0/acre',
       payback: 'Immediate',
       difficulty: 'Easy',
       description: 'Use weather forecasts to optimize harvest timing'
@@ -100,9 +100,9 @@ const PeerComparison = ({ selectedRegion, regions }) => {
   ];
 
   const metrics = [
-    { id: 'yield', label: 'Yield', unit: 'q/ha' },
-    { id: 'cost', label: 'Cost', unit: '₹/ha' },
-    { id: 'profit', label: 'Profit', unit: '₹/ha' },
+    { id: 'yield', label: 'Yield', unit: 'bu/acre' },
+    { id: 'cost', label: 'Cost', unit: '$/acre' },
+    { id: 'profit', label: 'Profit', unit: '$/acre' },
     { id: 'efficiency', label: 'Efficiency', unit: '%' }
   ];
 

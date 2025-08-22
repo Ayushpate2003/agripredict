@@ -18,16 +18,16 @@ const CommunityForum = () => {
     {
       id: 1,
       category: 'predictions',
-              title: 'Sugarcane yield predictions vs actual results - Maharashtra 2024',
+      title: 'Corn yield predictions vs actual results - Midwest 2024',
       author: 'Mike Johnson',
-              authorRole: 'Sugarcane Farmer - Maharashtra',
+      authorRole: 'Corn Farmer - Iowa',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
       replies: 23,
       views: 1456,
       lastActivity: '2 hours ago',
       isHot: true,
-              excerpt: 'Sharing my experience with AgriPredict\'s corn yield predictions this season. The AI was remarkably accurate for my 202-hectare operation...',
-              tags: ['sugarcane', 'maharashtra', 'yield-analysis']
+      excerpt: 'Sharing my experience with AgriPredict\'s corn yield predictions this season. The AI was remarkably accurate for my 500-acre operation...',
+      tags: ['corn', 'midwest', 'yield-analysis']
     },
     {
       id: 2,
@@ -74,16 +74,16 @@ const CommunityForum = () => {
     {
       id: 5,
       category: 'regional',
-              title: 'Gujarat groundnut farms - climate adaptation strategies',
+      title: 'Pacific Northwest apple orchards - climate adaptation strategies',
       author: 'Jennifer Lee',
-              authorRole: 'Groundnut Farmer - Gujarat',
+      authorRole: 'Orchard Manager - Washington',
       avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face',
       replies: 19,
       views: 743,
       lastActivity: '12 hours ago',
       isHot: false,
-              excerpt: 'Discussing how changing climate patterns are affecting groundnut production in Gujarat and how AI predictions are helping us adapt...',
-              tags: ['groundnut', 'climate-change', 'gujarat']
+      excerpt: 'Discussing how changing climate patterns are affecting apple production in the Pacific Northwest and how AI predictions are helping us adapt...',
+      tags: ['apples', 'climate-change', 'pacific-northwest']
     }
   ];
 

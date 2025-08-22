@@ -38,7 +38,7 @@ const FarmerPortalDashboard = () => {
       icon: "Wheat",
       plantedArea: 180,
       growthStage: "V6 - Six Leaf",
-              expectedYield: "45 q/ha",
+      expectedYield: "185 bu/acre",
       harvestDate: "Oct 15, 2025",
       status: "Excellent",
       accuracy: 94
@@ -50,7 +50,7 @@ const FarmerPortalDashboard = () => {
       icon: "Sprout",
       plantedArea: 150,
       growthStage: "R2 - Full Bloom",
-              expectedYield: "14 q/ha",
+      expectedYield: "58 bu/acre",
       harvestDate: "Sep 28, 2025",
       status: "Good",
       accuracy: 91
@@ -62,7 +62,7 @@ const FarmerPortalDashboard = () => {
       icon: "Wheat",
       plantedArea: 120,
       growthStage: "Grain Filling",
-              expectedYield: "17 q/ha",
+      expectedYield: "72 bu/acre",
       harvestDate: "Jul 20, 2025",
       status: "Fair",
       accuracy: 88
@@ -105,14 +105,14 @@ const FarmerPortalDashboard = () => {
       description: "Based on soil tests and current corn growth stage, consider split nitrogen application for maximum efficiency.",
       analysis: `Your corn fields are entering the V6 stage, which is critical for nitrogen uptake. Soil analysis shows moderate nitrogen levels, but with the predicted rainfall in the next week, there's risk of nitrogen leaching. A split application approach would optimize nutrient availability while minimizing environmental impact.`,
       actionSteps: [
-        "Apply 90 kg N/ha as side-dress application before V8 stage",
+        "Apply 80 lbs N/acre as side-dress application before V8 stage",
         "Monitor soil moisture levels for optimal timing",
         "Consider using nitrogen stabilizers to reduce leaching",
         "Schedule follow-up soil test in 3 weeks"
       ],
       timeline: "Next 7-10 days",
-              estimatedCost: "₹1,800/ha",
-        expectedImpact: "+2-3 q/ha yield increase"
+      estimatedCost: "$45/acre",
+      expectedImpact: "+8-12 bu/acre yield increase"
     },
     {
       id: 2,
@@ -128,7 +128,7 @@ const FarmerPortalDashboard = () => {
         "Check irrigation system efficiency"
       ],
       timeline: "Immediate - next 2 weeks",
-              estimatedCost: "₹500/ha water savings",
+      estimatedCost: "$12/acre water savings",
       expectedImpact: "15% water efficiency improvement"
     },
     {
@@ -145,7 +145,7 @@ const FarmerPortalDashboard = () => {
         "Prepare treatment plan if threshold exceeded"
       ],
       timeline: "Start immediately, continue for 4 weeks",
-              estimatedCost: "₹320/ha monitoring",
+      estimatedCost: "$8/acre monitoring",
       expectedImpact: "Prevent potential 15-25% yield loss"
     }
   ];
@@ -279,16 +279,16 @@ const FarmerPortalDashboard = () => {
       {
         name: "Optimal Weather Scenario",
         confidence: "High",
-        expectedYield: "47 q/ha",
-        investment: "₹19,600/ha",
+        expectedYield: "195 bu/acre",
+        investment: "$485/acre",
         roi: 24,
         description: "Assumes normal rainfall patterns and moderate temperatures throughout growing season"
       },
       {
         name: "Drought Stress Scenario",
         confidence: "Medium",
-        expectedYield: "40 q/ha",
-        investment: "₹21,000/ha",
+        expectedYield: "165 bu/acre",
+        investment: "$520/acre",
         roi: 12,
         description: "Accounts for 20% below normal rainfall requiring additional irrigation"
       }

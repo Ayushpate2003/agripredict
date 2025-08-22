@@ -5,32 +5,33 @@ import Button from '../../../components/ui/Button';
 import Select from '../../../components/ui/Select';
 
 const HeroSection = () => {
-  const [selectedRegion, setSelectedRegion] = useState('maharashtra');
+  const [selectedRegion, setSelectedRegion] = useState('midwest');
   const [selectedCrop, setSelectedCrop] = useState('corn');
   const [predictionData, setPredictionData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const regionOptions = [
-    { value: 'maharashtra', label: 'Maharashtra' },
-    { value: 'rajasthan', label: 'Rajasthan' },
-    { value: 'gujarat', label: 'Gujarat' },
-    { value: 'uttar-pradesh', label: 'Uttar Pradesh' }
+    { value: 'midwest', label: 'Midwest' },
+    { value: 'great-plains', label: 'Great Plains' },
+    { value: 'california', label: 'California Central Valley' },
+    { value: 'southeast', label: 'Southeast' },
+    { value: 'pacific-northwest', label: 'Pacific Northwest' }
   ];
 
   const cropOptions = [
-    { value: 'sugarcane', label: 'Sugarcane' },
-    { value: 'cotton', label: 'Cotton' },
+    { value: 'corn', label: 'Corn' },
+    { value: 'soybeans', label: 'Soybeans' },
     { value: 'wheat', label: 'Wheat' },
-    { value: 'rice', label: 'Rice' },
-    { value: 'groundnut', label: 'Groundnut' }
+    { value: 'cotton', label: 'Cotton' },
+    { value: 'rice', label: 'Rice' }
   ];
 
   const mockPredictions = {
-    'maharashtra-sugarcane': { yield: 45, confidence: 94, trend: 'up', change: '+12%' },
-    'maharashtra-cotton': { yield: 35, confidence: 91, trend: 'up', change: '+8%' },
-    'rajasthan-wheat': { yield: 40, confidence: 89, trend: 'stable', change: '+3%' },
-    'gujarat-groundnut': { yield: 52, confidence: 96, trend: 'up', change: '+15%' },
-    'uttar-pradesh-rice': { yield: 42, confidence: 87, trend: 'down', change: '-2%' }
+    'midwest-corn': { yield: 185, confidence: 94, trend: 'up', change: '+12%' },
+    'midwest-soybeans': { yield: 52, confidence: 91, trend: 'up', change: '+8%' },
+    'great-plains-wheat': { yield: 48, confidence: 89, trend: 'stable', change: '+3%' },
+    'california-corn': { yield: 210, confidence: 96, trend: 'up', change: '+15%' },
+    'southeast-cotton': { yield: 890, confidence: 87, trend: 'down', change: '-2%' }
   };
 
   const generatePrediction = () => {
@@ -38,7 +39,7 @@ const HeroSection = () => {
     setTimeout(() => {
       const key = `${selectedRegion}-${selectedCrop}`;
       const prediction = mockPredictions?.[key] || {
-        yield: Math.floor(Math.random() * 30) + 35,
+        yield: Math.floor(Math.random() * 100) + 120,
         confidence: Math.floor(Math.random() * 20) + 80,
         trend: ['up', 'stable', 'down']?.[Math.floor(Math.random() * 3)],
         change: `${Math.random() > 0.5 ? '+' : '-'}${Math.floor(Math.random() * 15) + 1}%`
@@ -170,7 +171,7 @@ const HeroSection = () => {
                 <div className="space-y-4">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-primary">
-                      {predictionData?.yield} q/ha
+                      {predictionData?.yield} bu/acre
                     </div>
                     <div className="text-sm text-muted-foreground">Predicted Yield</div>
                   </div>

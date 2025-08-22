@@ -8,8 +8,6 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
   const [formData, setFormData] = useState({
     crop: '',
     location: '',
-    latitude: '',
-    longitude: '',
     soilType: '',
     plantingDate: '',
     fieldSize: '',
@@ -23,27 +21,9 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
     { value: 'soybeans', label: 'Soybeans' },
     { value: 'cotton', label: 'Cotton' },
     { value: 'rice', label: 'Rice' },
-    { value: 'sugarcane', label: 'Sugarcane' },
-    { value: 'pulses', label: 'Pulses' },
-    { value: 'oilseeds', label: 'Oilseeds' }
-  ];
-
-  const locationOptions = [
-    { value: 'mumbai', label: 'Mumbai, Maharashtra', lat: 19.0760, lng: 72.8777 },
-    { value: 'delhi', label: 'Delhi, Delhi', lat: 28.7041, lng: 77.1025 },
-    { value: 'bangalore', label: 'Bangalore, Karnataka', lat: 12.9716, lng: 77.5946 },
-    { value: 'chennai', label: 'Chennai, Tamil Nadu', lat: 13.0827, lng: 80.2707 },
-    { value: 'kolkata', label: 'Kolkata, West Bengal', lat: 22.5726, lng: 88.3639 },
-    { value: 'hyderabad', label: 'Hyderabad, Telangana', lat: 17.3850, lng: 78.4867 },
-    { value: 'pune', label: 'Pune, Maharashtra', lat: 18.5204, lng: 73.8567 },
-    { value: 'ahmedabad', label: 'Ahmedabad, Gujarat', lat: 23.0225, lng: 72.5714 },
-    { value: 'jaipur', label: 'Jaipur, Rajasthan', lat: 26.9124, lng: 75.7873 },
-    { value: 'lucknow', label: 'Lucknow, Uttar Pradesh', lat: 26.8467, lng: 80.9462 },
-    { value: 'iowa', label: 'Iowa County, IA', lat: 41.8781, lng: -87.6298 },
-    { value: 'madison', label: 'Madison County, IL', lat: 38.6270, lng: -90.1994 },
-    { value: 'johnson', label: 'Johnson County, KS', lat: 38.8858, lng: -94.8191 },
-    { value: 'lancaster', label: 'Lancaster County, NE', lat: 40.8136, lng: -96.7026 },
-    { value: 'dakota', label: 'Dakota County, MN', lat: 44.6719, lng: -93.0616 }
+    { value: 'barley', label: 'Barley' },
+    { value: 'oats', label: 'Oats' },
+    { value: 'sorghum', label: 'Sorghum' }
   ];
 
   const soilTypeOptions = [
@@ -68,19 +48,6 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
       ...prev,
       [field]: value
     }));
-
-    // If location is selected, update coordinates
-    if (field === 'location') {
-      const selectedLocation = locationOptions.find(loc => loc.value === value);
-      if (selectedLocation) {
-        setFormData(prev => ({
-          ...prev,
-          location: value,
-          latitude: selectedLocation.lat,
-          longitude: selectedLocation.lng
-        }));
-      }
-    }
   };
 
   const handleSubmit = (e) => {
@@ -115,14 +82,13 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
             searchable
           />
 
-          <Select
+          <Input
             label="Farm Location"
-            placeholder="Select your farm location"
-            options={locationOptions}
+            type="text"
+            placeholder="e.g., Iowa County, IA"
             value={formData?.location}
-            onChange={(value) => handleInputChange('location', value)}
+            onChange={(e) => handleInputChange('location', e?.target?.value)}
             required
-            searchable
           />
 
           <Select
@@ -143,7 +109,7 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
           />
 
           <Input
-                          label="Field Size (hectares)"
+            label="Field Size (acres)"
             type="number"
             placeholder="e.g., 150"
             value={formData?.fieldSize}
@@ -160,7 +126,7 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
           />
 
           <Input
-                          label="Previous Year Yield (q/ha)"
+            label="Previous Year Yield (bu/acre)"
             type="number"
             placeholder="e.g., 180"
             value={formData?.previousYield}

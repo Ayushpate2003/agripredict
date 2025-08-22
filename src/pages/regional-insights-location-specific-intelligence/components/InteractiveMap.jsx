@@ -66,7 +66,7 @@ const InteractiveMap = ({ regions, selectedRegion, onRegionSelect }) => {
                   <div className="text-xs text-muted-foreground mb-2">{region?.description}</div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Avg Yield:</span>
-                    <span className="font-medium text-primary">{region?.avgYield} q/ha</span>
+                    <span className="font-medium text-primary">{region?.avgYield} bu/acre</span>
                   </div>
                 </div>
               )}

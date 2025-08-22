@@ -10,44 +10,44 @@ import PeerComparison from './components/PeerComparison';
 import SeasonalCalendar from './components/SeasonalCalendar';
 
 const RegionalInsights = () => {
-  const [selectedRegion, setSelectedRegion] = useState('maharashtra');
+  const [selectedRegion, setSelectedRegion] = useState('midwest-corn-belt');
   const [activeSection, setActiveSection] = useState('overview');
 
-  // Mock regional data for Indian states
+  // Mock regional data
   const regions = [
     {
-      id: 'maharashtra',
-      name: 'Maharashtra',
-      description: 'Leading agricultural state with diverse crop production and advanced farming practices',
-      totalFarms: '15,847',
-      totalHectares: '1.13M',
-              avgYield: '45',
+      id: 'midwest-corn-belt',
+      name: 'Midwest Corn Belt',
+      description: 'Prime agricultural region known for high-yield corn and soybean production',
+      totalFarms: '2,847',
+      totalAcres: '1.2M',
+      avgYield: '185',
       successRate: 92,
       performance: 'high',
       dominantCrops: [
-        { name: 'Sugarcane', percentage: 35, hectares: '396K' },
-        { name: 'Cotton', percentage: 25, hectares: '283K' },
-        { name: 'Soybean', percentage: 20, hectares: '227K' },
-        { name: 'Other', percentage: 20, hectares: '227K' }
+        { name: 'Corn', percentage: 45, acres: '540K' },
+        { name: 'Soybeans', percentage: 35, acres: '420K' },
+        { name: 'Wheat', percentage: 15, acres: '180K' },
+        { name: 'Other', percentage: 5, acres: '60K' }
       ],
       highlights: [
-        'Highest sugarcane production in India with optimal irrigation',
-        'Advanced precision agriculture adoption rate of 65%',
+        'Highest corn yields in the nation with optimal soil conditions',
+        'Advanced precision agriculture adoption rate of 78%',
         'Strong cooperative network and agricultural support services',
-        'Excellent transportation infrastructure for crop marketing'
+        'Excellent transportation infrastructure for grain marketing'
       ],
       soilData: {
-        ph: 7.2,
-        nitrogen: 28,
-        phosphorus: 42,
-        potassium: 245,
-        organicMatter: 3.8
+        ph: 6.8,
+        nitrogen: 32,
+        phosphorus: 45,
+        potassium: 280,
+        organicMatter: 4.2
       },
       recommendedCrops: [
-        { name: 'Sugarcane', suitability: 95 },
-        { name: 'Cotton', suitability: 88 },
-        { name: 'Soybean', suitability: 85 },
-        { name: 'Wheat', suitability: 78 }
+        { name: 'Corn (Field)', suitability: 95 },
+        { name: 'Soybeans', suitability: 92 },
+        { name: 'Winter Wheat', suitability: 85 },
+        { name: 'Alfalfa', suitability: 78 }
       ],
       soilImprovements: [
         'Consider cover crops to increase organic matter',
@@ -56,45 +56,45 @@ const RegionalInsights = () => {
         'Regular soil testing every 2-3 years recommended'
       ],
       weather: {
-        precipitation: '4.2',
-        temperature: 72,
-        humidity: 68,
-        growingDays: 180
+        precipitation: '3.8',
+        temperature: 68,
+        humidity: 72,
+        growingDays: 165
       }
     },
     {
-      id: 'rajasthan',
-      name: 'Rajasthan',
-      description: 'Diverse agricultural region with traditional and modern farming practices',
-      totalFarms: '12,923',
-      totalHectares: '1.30M',
-              avgYield: '35',
-      successRate: 78,
+      id: 'great-plains',
+      name: 'Great Plains',
+      description: 'Extensive wheat and cattle region with diverse agricultural opportunities',
+      totalFarms: '1,923',
+      totalAcres: '2.1M',
+      avgYield: '165',
+      successRate: 85,
       performance: 'moderate',
       dominantCrops: [
-        { name: 'Wheat', percentage: 40, hectares: '518K' },
-        { name: 'Bajra', percentage: 25, hectares: '324K' },
-        { name: 'Mustard', percentage: 20, hectares: '259K' },
-        { name: 'Other', percentage: 15, hectares: '194K' }
+        { name: 'Wheat', percentage: 55, acres: '1.16M' },
+        { name: 'Corn', percentage: 25, acres: '525K' },
+        { name: 'Sorghum', percentage: 15, acres: '315K' },
+        { name: 'Other', percentage: 5, acres: '105K' }
       ],
       highlights: [
-        'Leading wheat and mustard production with drought-resistant varieties',
+        'Leading wheat production region with drought-resistant varieties',
         'Integrated crop-livestock systems provide diversification',
-        'Strong potential for solar energy integration',
+        'Strong wind energy potential for additional farm income',
         'Excellent grain storage and transportation facilities'
       ],
       soilData: {
-        ph: 8.1,
-        nitrogen: 22,
-        phosphorus: 32,
-        potassium: 185,
-        organicMatter: 2.4
+        ph: 7.2,
+        nitrogen: 28,
+        phosphorus: 38,
+        potassium: 245,
+        organicMatter: 3.1
       },
       recommendedCrops: [
-        { name: 'Wheat', suitability: 92 },
-        { name: 'Bajra', suitability: 88 },
-        { name: 'Mustard', suitability: 85 },
-        { name: 'Gram', suitability: 75 }
+        { name: 'Winter Wheat', suitability: 98 },
+        { name: 'Grain Sorghum', suitability: 88 },
+        { name: 'Corn', suitability: 75 },
+        { name: 'Sunflowers', suitability: 82 }
       ],
       soilImprovements: [
         'Increase organic matter through crop residue management',
@@ -103,92 +103,92 @@ const RegionalInsights = () => {
         'Implement windbreaks for soil protection'
       ],
       weather: {
-        precipitation: '2.8',
-        temperature: 68,
-        humidity: 52,
-        growingDays: 160
+        precipitation: '2.4',
+        temperature: 62,
+        humidity: 58,
+        growingDays: 145
       }
     },
     {
-      id: 'gujarat',
-      name: 'Gujarat',
-      description: 'Progressive agricultural state with high-value crop production',
-      totalFarms: '18,156',
-      totalHectares: '850K',
-              avgYield: '52',
+      id: 'california-central-valley',
+      name: 'California Central Valley',
+      description: 'Intensive specialty crop production with advanced irrigation systems',
+      totalFarms: '3,156',
+      totalAcres: '850K',
+      avgYield: '220',
       successRate: 88,
       performance: 'high',
       dominantCrops: [
-        { name: 'Groundnut', percentage: 35, hectares: '297K' },
-        { name: 'Cotton', percentage: 30, hectares: '255K' },
-        { name: 'Wheat', percentage: 20, hectares: '170K' },
-        { name: 'Other', percentage: 15, hectares: '127K' }
+        { name: 'Almonds', percentage: 30, acres: '255K' },
+        { name: 'Grapes', percentage: 25, acres: '213K' },
+        { name: 'Tomatoes', percentage: 20, acres: '170K' },
+        { name: 'Other', percentage: 25, acres: '212K' }
       ],
       highlights: [
-        'Leading groundnut and cotton production with premium markets',
+        'World-class specialty crop production with premium markets',
         'Advanced drip irrigation and precision agriculture',
-        'Strong research partnerships with agricultural universities',
+        'Strong research partnerships with UC Davis',
         'Excellent processing and export infrastructure'
       ],
       soilData: {
-        ph: 7.5,
-        nitrogen: 35,
-        phosphorus: 48,
-        potassium: 280,
-        organicMatter: 3.2
+        ph: 7.8,
+        nitrogen: 45,
+        phosphorus: 52,
+        potassium: 320,
+        organicMatter: 2.8
       },
       recommendedCrops: [
-        { name: 'Groundnut', suitability: 96 },
-        { name: 'Cotton', suitability: 94 },
-        { name: 'Wheat', suitability: 91 },
-        { name: 'Sugarcane', suitability: 89 }
+        { name: 'Almonds', suitability: 96 },
+        { name: 'Wine Grapes', suitability: 94 },
+        { name: 'Processing Tomatoes', suitability: 91 },
+        { name: 'Pistachios', suitability: 89 }
       ],
       soilImprovements: [
         'Address high pH through sulfur applications',
         'Improve organic matter with compost additions',
         'Monitor salinity levels in irrigated fields',
-        'Consider cover crops in crop rotation'
+        'Consider cover crops in tree crop alleys'
       ],
       weather: {
-        precipitation: '3.5',
-        temperature: 74,
-        humidity: 58,
-        growingDays: 200
+        precipitation: '1.2',
+        temperature: 75,
+        humidity: 45,
+        growingDays: 280
       }
     },
     {
-      id: 'uttar-pradesh',
-      name: 'Uttar Pradesh',
-      description: 'Traditional agricultural powerhouse with diverse crop production',
-      totalFarms: '25,654',
-      totalHectares: '1.82M',
-              avgYield: '40',
-      successRate: 82,
+      id: 'southeast-cotton-belt',
+      name: 'Southeast Cotton Belt',
+      description: 'Traditional cotton and peanut region adapting to modern agriculture',
+      totalFarms: '1,654',
+      totalAcres: '980K',
+      avgYield: '145',
+      successRate: 78,
       performance: 'moderate',
       dominantCrops: [
-        { name: 'Rice', percentage: 35, hectares: '639K' },
-        { name: 'Wheat', percentage: 30, hectares: '546K' },
-        { name: 'Sugarcane', percentage: 20, hectares: '364K' },
-        { name: 'Other', percentage: 15, hectares: '273K' }
+        { name: 'Cotton', percentage: 40, acres: '392K' },
+        { name: 'Peanuts', percentage: 25, acres: '245K' },
+        { name: 'Corn', percentage: 20, acres: '196K' },
+        { name: 'Other', percentage: 15, acres: '147K' }
       ],
       highlights: [
-        'Strong rice and wheat production with traditional farming',
+        'Strong cotton production with modern ginning facilities',
         'Diversified rotation systems improving soil health',
-        'Growing adoption of modern agriculture technologies',
-        'Excellent climate for multiple cropping opportunities'
+        'Growing adoption of precision agriculture technologies',
+        'Excellent climate for double-cropping opportunities'
       ],
       soilData: {
-        ph: 6.8,
-        nitrogen: 30,
-        phosphorus: 38,
-        potassium: 220,
-        organicMatter: 3.5
+        ph: 6.2,
+        nitrogen: 24,
+        phosphorus: 35,
+        potassium: 185,
+        organicMatter: 2.9
       },
       recommendedCrops: [
-        { name: 'Rice', suitability: 95 },
-        { name: 'Wheat', suitability: 90 },
-        { name: 'Sugarcane', suitability: 85 },
-        { name: 'Maize', suitability: 80 }
+        { name: 'Cotton', suitability: 93 },
+        { name: 'Peanuts', suitability: 90 },
+        { name: 'Sweet Corn', suitability: 82 },
+        { name: 'Soybeans', suitability: 78 }
       ],
       soilImprovements: [
         'Lime application to raise pH for optimal nutrient availability',
@@ -197,7 +197,7 @@ const RegionalInsights = () => {
         'Consider strip-till to reduce soil compaction'
       ],
       weather: {
-        precipitation: '5.2',
+        precipitation: '4.8',
         temperature: 72,
         humidity: 78,
         growingDays: 210

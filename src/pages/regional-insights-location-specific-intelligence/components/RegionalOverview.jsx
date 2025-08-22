@@ -22,12 +22,12 @@ const RegionalOverview = ({ selectedRegion, regions }) => {
           <div className="text-sm text-muted-foreground">Active Farms</div>
         </div>
         <div className="text-center">
-                      <div className="text-3xl font-bold text-secondary mb-1">{region?.totalHectares}</div>
-            <div className="text-sm text-muted-foreground">Total Hectares</div>
+          <div className="text-3xl font-bold text-secondary mb-1">{region?.totalAcres}</div>
+          <div className="text-sm text-muted-foreground">Total Acres</div>
         </div>
         <div className="text-center">
           <div className="text-3xl font-bold text-accent mb-1">{region?.avgYield}</div>
-                      <div className="text-sm text-muted-foreground">Avg Yield (q/ha)</div>
+          <div className="text-sm text-muted-foreground">Avg Yield (bu/acre)</div>
         </div>
         <div className="text-center">
           <div className="text-3xl font-bold text-success mb-1">{region?.successRate}%</div>
@@ -48,7 +48,7 @@ const RegionalOverview = ({ selectedRegion, regions }) => {
                 </div>
                 <div className="text-right">
                   <div className="text-sm font-semibold text-primary">{crop?.percentage}%</div>
-                  <div className="text-xs text-muted-foreground">{crop?.hectares} hectares</div>
+                  <div className="text-xs text-muted-foreground">{crop?.acres} acres</div>
                 </div>
               </div>
             ))}

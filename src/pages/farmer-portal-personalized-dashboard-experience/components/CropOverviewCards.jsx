@@ -47,7 +47,7 @@ const CropOverviewCards = ({ crops }) => {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">Planted Area</span>
-                              <span className="font-medium">{crop?.plantedArea} hectares</span>
+              <span className="font-medium">{crop?.plantedArea} acres</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">Growth Stage</span>

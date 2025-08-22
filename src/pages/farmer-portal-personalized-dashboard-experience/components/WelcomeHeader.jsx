@@ -22,7 +22,7 @@ const WelcomeHeader = ({ farmer, currentSeason, weatherAlert }) => {
               Welcome back, {farmer?.name}
             </h1>
             <p className="text-muted-foreground">
-              {farmer?.location} • {farmer?.farmSize} hectares • {currentSeason} Season
+              {farmer?.location} • {farmer?.farmSize} acres • {currentSeason} Season
             </p>
           </div>
         </div>
