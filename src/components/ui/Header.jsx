@@ -62,14 +62,9 @@ const Header = () => {
           {/* Logo */}
           <Link 
             to="/homepage-agricultural-intelligence-platform" 
-            className="flex items-center space-x-3 flex-shrink-0"
+            className="flex items-center flex-shrink-0"
           >
-            <div className="w-8 h-8 agricultural-gradient rounded-lg flex items-center justify-center">
-              <Icon name="Sprout" size={20} color="white" />
-            </div>
-            <span className="text-xl font-bold text-primary font-sans">
-              AgriPredict
-            </span>
+            <img src="/assets/images/krishi-drishti-logo.png" alt="Krishi-Drishti Logo" className="h-10 w-auto" style={{background: 'transparent'}} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -131,14 +126,6 @@ const Header = () => {
             >
               Sign In
             </Button>
-            <Button 
-              variant="default" 
-              size="sm"
-              iconName="Zap"
-              iconPosition="left"
-            >
-              Try Free
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -192,14 +179,6 @@ const Header = () => {
                   iconPosition="left"
                 >
                   Sign In
-                </Button>
-                <Button 
-                  variant="default" 
-                  fullWidth
-                  iconName="Zap"
-                  iconPosition="left"
-                >
-                  Try Free Prediction
                 </Button>
               </div>
             </div>

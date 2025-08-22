@@ -63,7 +63,6 @@ const MetricsBar = () => {
     {
       icon: 'Target',
       value: formatNumber(animatedMetrics?.accuracy, '%'),
-      label: 'Prediction Accuracy',
       description: 'Verified against actual harvest data',
       color: 'text-success'
     },

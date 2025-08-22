@@ -1,0 +1,6 @@
+# Example requirements file for Python (if needed for backend or scripts)
+# If your project is only Node.js/React, you may not need this file.
+
+# Add Python dependencies below, one per line, e.g.:
+# requests
+# flask

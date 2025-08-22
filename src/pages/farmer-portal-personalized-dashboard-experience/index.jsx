@@ -20,10 +20,10 @@ const FarmerPortalDashboard = () => {
 
   // Mock farmer data
   const farmerData = {
-    name: "John Mitchell",
-    location: "Iowa, USA",
-    farmSize: 450,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+  name: "Rahul",
+  location: "nashik .IND",
+  farmSize: 520,
+  avatar: "/assets/images/2dc5efbf-2a0e-4dfe-9094-c8c8eea31f6b.jpeg"
   };
 
   const currentSeason = "Spring 2025";
@@ -420,16 +420,14 @@ const FarmerPortalDashboard = () => {
       </main>
       {/* Footer */}
       <footer className="bg-muted/30 border-t border-border mt-12">
+  {/* Removed Krishi-Drishti logo and name as requested */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-8 h-8 agricultural-gradient rounded-lg flex items-center justify-center">
-                <Icon name="Sprout" size={20} color="white" />
-              </div>
-              <span className="text-lg font-bold text-primary">AgriPredict</span>
+              <img src="/assets/images/krishi-drishti-footer-logo.png" alt="Krishi-Drishti Logo" className="h-10 w-auto bg-white rounded-lg p-1" style={{background: 'transparent'}} />
             </div>
             <div className="text-sm text-muted-foreground">
-              © {new Date()?.getFullYear()} AgriPredict. Empowering farmers with intelligent insights.
+              © {new Date()?.getFullYear()} Krishi-Drishti. Empowering farmers with intelligent insights.
             </div>
           </div>
         </div>

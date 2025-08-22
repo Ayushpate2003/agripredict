@@ -14,6 +14,7 @@ const ForecastDashboard = () => {
   const [predictionData, setPredictionData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCrop, setSelectedCrop] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
   const [dashboardView, setDashboardView] = useState('overview');
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -26,25 +27,21 @@ const ForecastDashboard = () => {
   const handlePredictionSubmit = async (formData) => {
     setIsLoading(true);
     setSelectedCrop(formData?.crop);
-    
+    setSelectedLocation(formData?.location);
     // Simulate AI prediction generation
     await new Promise(resolve => setTimeout(resolve, 3000));
-    
-    // Mock prediction data
-    const mockPrediction = {
-      crop: formData?.crop,
-      location: formData?.location,
-      predictedYield: 195,
-      confidence: 94,
-      riskLevel: 'moderate',
-      recommendations: [
-        'Monitor soil moisture levels closely',
-        'Consider supplemental irrigation if dry conditions persist',
-        'Implement pest monitoring protocols'
-      ]
-    };
-    
-    setPredictionData(mockPrediction);
+    // Mock prediction data for chart (array of months)
+    const mockPredictionData = [
+      { month: 'Mar', predicted: 45, confidence: 85, historical: 42 },
+      { month: 'Apr', predicted: 78, confidence: 88, historical: 75 },
+      { month: 'May', predicted: 125, confidence: 92, historical: 118 },
+      { month: 'Jun', predicted: 165, confidence: 94, historical: 158 },
+      { month: 'Jul', predicted: 185, confidence: 96, historical: 178 },
+      { month: 'Aug', predicted: 195, confidence: 94, historical: 188 },
+      { month: 'Sep', predicted: 198, confidence: 92, historical: 192 },
+      { month: 'Oct', predicted: 200, confidence: 90, historical: 195 }
+    ];
+    setPredictionData(mockPredictionData);
     setIsLoading(false);
   };
 
@@ -62,13 +59,14 @@ const ForecastDashboard = () => {
         return (
           <div className="space-y-6">
             <YieldPredictionChart predictionData={predictionData} selectedCrop={selectedCrop} />
+            <RealtimeWeatherWidget location={selectedLocation} />
             <WeatherImpactAnalysis />
           </div>
         );
       case 'weather':
         return (
           <div className="space-y-6">
-            <RealtimeWeatherWidget location={predictionData?.location} />
+            <RealtimeWeatherWidget location={selectedLocation} />
             <WeatherImpactAnalysis />
           </div>
         );
@@ -91,7 +89,7 @@ const ForecastDashboard = () => {
           <div className="space-y-6">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               <YieldPredictionChart predictionData={predictionData} selectedCrop={selectedCrop} />
-              <RealtimeWeatherWidget location={predictionData?.location} />
+              <RealtimeWeatherWidget location={selectedLocation} />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               <WeatherImpactAnalysis />

@@ -27,19 +27,9 @@ const ContactSupportPage = () => {
       <footer className="bg-primary text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                  <span className="text-primary font-bold text-lg">A</span>
-                </div>
-                <span className="text-2xl font-bold">AgriPredict</span>
-              </div>
-              <p className="text-white/80 mb-6 max-w-md">
-                Empowering farmers with AI-driven crop predictions and intelligent agricultural insights for sustainable farming success.
-              </p>
-              <div className="text-sm text-white/60">
-                © {new Date()?.getFullYear()} AgriPredict. All rights reserved.
-              </div>
+            {/* Removed logo and name section as requested */}
+            <div className="md:col-span-2 flex items-center text-white/60 text-sm">
+              © {new Date()?.getFullYear()} Krishi-Drishti. All rights reserved.
             </div>
 
             <div>

@@ -3,43 +3,91 @@ import Icon from '../../../components/AppIcon';
 
 const RealtimeWeatherWidget = ({ location }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [weatherData, setWeatherData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch weather data from WeatherAPI using the provided API key
+  const fetchWeatherData = async (loc) => {
+    setLoading(true);
+    try {
+      const apiKey = 'd7e2b34dbf134431e995228b3ea878be';
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=5741b63ce4b95cd6edadd2caa7df1e71&q=${encodeURIComponent(loc)}&days=5&aqi=no&alerts=yes`;
+      const response = await fetch(url);
+      const data = await response.json();
+      if (!response.ok || data.error) {
+        throw new Error(data.error?.message || 'Weather fetch failed');
+      }
+      const weatherData = {
+        current: {
+          temperature: data.current.temp_c,
+          humidity: data.current.humidity,
+          windSpeed: data.current.wind_kph,
+          windDirection: data.current.wind_dir,
+          pressure: data.current.pressure_mb,
+          visibility: data.current.vis_km,
+          uvIndex: data.current.uv,
+          condition: data.current.condition.text,
+          icon: 'CloudSun',
+        },
+        forecast: data.forecast.forecastday.map((day, idx) => ({
+          day: idx === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en-IN', { weekday: 'short' }),
+          high: day.day.maxtemp_c,
+          low: day.day.mintemp_c,
+          condition: day.day.condition.text,
+          icon: 'CloudSun',
+          precipitation: day.day.daily_chance_of_rain,
+        })),
+        alerts: (data.alerts && data.alerts.alert && data.alerts.alert.length > 0)
+          ? data.alerts.alert.map(alert => ({
+              type: alert.event,
+              title: alert.headline,
+              description: alert.desc,
+              severity: alert.severity?.toLowerCase() || 'minor',
+            }))
+          : [],
+      };
+      setWeatherData(weatherData);
+      setError(null);
+    } catch (err) {
+      // fallback to mock data for demo/testing
+      setWeatherData({
+        current: {
+          temperature: 32,
+          humidity: 60,
+          windSpeed: 10,
+          windDirection: 'E',
+          pressure: 1010,
+          visibility: 8,
+          uvIndex: 7,
+          condition: 'Partly Cloudy',
+          icon: 'CloudSun',
+        },
+        forecast: [
+          { day: 'Today', high: 34, low: 27, condition: 'Partly Cloudy', icon: 'CloudSun', precipitation: 10 },
+          { day: 'Tue', high: 35, low: 28, condition: 'Sunny', icon: 'Sun', precipitation: 0 },
+          { day: 'Wed', high: 33, low: 26, condition: 'Scattered Showers', icon: 'CloudRain', precipitation: 40 },
+          { day: 'Thu', high: 31, low: 25, condition: 'Thunderstorms', icon: 'CloudLightning', precipitation: 80 },
+          { day: 'Fri', high: 32, low: 26, condition: 'Partly Cloudy', icon: 'CloudSun', precipitation: 20 }
+        ],
+        alerts: [],
+        error: err.message,
+      });
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
-    }, 60000); // Update every minute
-
+    }, 60000);
     return () => clearInterval(timer);
   }, []);
 
-  const mockWeatherData = {
-    current: {
-      temperature: 72,
-      humidity: 68,
-      windSpeed: 8.5,
-      windDirection: 'SW',
-      pressure: 30.15,
-      visibility: 10,
-      uvIndex: 6,
-      condition: 'Partly Cloudy',
-      icon: 'CloudSun'
-    },
-    forecast: [
-      { day: 'Today', high: 78, low: 65, condition: 'Partly Cloudy', icon: 'CloudSun', precipitation: 10 },
-      { day: 'Tomorrow', high: 82, low: 68, condition: 'Sunny', icon: 'Sun', precipitation: 0 },
-      { day: 'Wed', high: 79, low: 66, condition: 'Scattered Showers', icon: 'CloudRain', precipitation: 40 },
-      { day: 'Thu', high: 75, low: 62, condition: 'Thunderstorms', icon: 'CloudLightning', precipitation: 80 },
-      { day: 'Fri', high: 77, low: 64, condition: 'Partly Cloudy', icon: 'CloudSun', precipitation: 20 }
-    ],
-    alerts: [
-      {
-        type: 'watch',
-        title: 'Thunderstorm Watch',
-        description: 'Severe thunderstorms possible Thursday afternoon',
-        severity: 'moderate'
-      }
-    ]
-  };
+  useEffect(() => {
+    if (location) {
+      fetchWeatherData(location);
+    }
+  }, [location]);
 
   const formatTime = (date) => {
     return date?.toLocaleTimeString('en-US', { 
@@ -75,6 +123,28 @@ const RealtimeWeatherWidget = ({ location }) => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="bg-white rounded-lg harvest-shadow border border-border p-8 flex items-center justify-center min-h-[300px]">
+        <span className="text-muted-foreground">Loading weather data...</span>
+      </div>
+    );
+  }
+  if (!weatherData) {
+    return (
+      <div className="bg-white rounded-lg harvest-shadow border border-border p-8 flex items-center justify-center min-h-[300px]">
+        <span className="text-error">Unable to load weather data. Please try again or check your API key.</span>
+      </div>
+    );
+  }
+  if (weatherData.error) {
+    return (
+      <div className="bg-white rounded-lg harvest-shadow border border-border p-8 flex items-center justify-center min-h-[300px]">
+        <span className="text-error">{weatherData.error} (showing mock data below)</span>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white rounded-lg harvest-shadow border border-border">
       <div className="p-6 border-b border-border">
@@ -102,27 +172,27 @@ const RealtimeWeatherWidget = ({ location }) => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-4">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                <Icon name={mockWeatherData?.current?.icon} size={32} className="text-primary" />
+                <Icon name={weatherData?.current?.icon} size={32} className="text-primary" />
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">{mockWeatherData?.current?.temperature}°F</p>
-                <p className="text-sm text-muted-foreground">{mockWeatherData?.current?.condition}</p>
+                <p className="text-3xl font-bold text-foreground">{weatherData?.current?.temperature}°F</p>
+                <p className="text-sm text-muted-foreground">{weatherData?.current?.condition}</p>
               </div>
             </div>
             <div className="text-right space-y-1">
               <div className="flex items-center space-x-2">
                 <Icon name="Droplets" size={14} className="text-accent" />
-                <span className="text-sm text-muted-foreground">{mockWeatherData?.current?.humidity}%</span>
+                <span className="text-sm text-muted-foreground">{weatherData?.current?.humidity}%</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Icon name="Wind" size={14} className="text-accent" />
                 <span className="text-sm text-muted-foreground">
-                  {mockWeatherData?.current?.windSpeed} mph {mockWeatherData?.current?.windDirection}
+                  {weatherData?.current?.windSpeed} mph {weatherData?.current?.windDirection}
                 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Icon name="Gauge" size={14} className="text-accent" />
-                <span className="text-sm text-muted-foreground">{mockWeatherData?.current?.pressure} in</span>
+                <span className="text-sm text-muted-foreground">{weatherData?.current?.pressure} in</span>
               </div>
             </div>
           </div>
@@ -131,12 +201,12 @@ const RealtimeWeatherWidget = ({ location }) => {
             <div className="bg-muted/30 rounded-lg p-3 text-center">
               <Icon name="Eye" size={16} className="text-accent mx-auto mb-1" />
               <p className="text-xs text-muted-foreground">Visibility</p>
-              <p className="text-sm font-medium text-foreground">{mockWeatherData?.current?.visibility} mi</p>
+              <p className="text-sm font-medium text-foreground">{weatherData?.current?.visibility} mi</p>
             </div>
             <div className="bg-muted/30 rounded-lg p-3 text-center">
               <Icon name="Sun" size={16} className="text-accent mx-auto mb-1" />
               <p className="text-xs text-muted-foreground">UV Index</p>
-              <p className="text-sm font-medium text-foreground">{mockWeatherData?.current?.uvIndex}</p>
+              <p className="text-sm font-medium text-foreground">{weatherData?.current?.uvIndex}</p>
             </div>
             <div className="bg-muted/30 rounded-lg p-3 text-center">
               <Icon name="Thermometer" size={16} className="text-accent mx-auto mb-1" />
@@ -150,7 +220,7 @@ const RealtimeWeatherWidget = ({ location }) => {
         <div className="mb-6">
           <h4 className="text-sm font-medium text-foreground mb-3">5-Day Forecast</h4>
           <div className="space-y-2">
-            {mockWeatherData?.forecast?.map((day, index) => (
+            {weatherData?.forecast?.map((day, index) => (
               <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/30 growth-transition">
                 <div className="flex items-center space-x-3">
                   <Icon name={day?.icon} size={20} className="text-primary" />
@@ -173,11 +243,11 @@ const RealtimeWeatherWidget = ({ location }) => {
         </div>
 
         {/* Weather Alerts */}
-        {mockWeatherData?.alerts?.length > 0 && (
+        {weatherData?.alerts?.length > 0 && (
           <div>
             <h4 className="text-sm font-medium text-foreground mb-3">Weather Alerts</h4>
             <div className="space-y-2">
-              {mockWeatherData?.alerts?.map((alert, index) => (
+              {weatherData?.alerts?.map((alert, index) => (
                 <div key={index} className={`p-3 rounded-lg border ${getAlertColor(alert?.severity)}`}>
                   <div className="flex items-start space-x-3">
                     <Icon name={getAlertIcon(alert?.severity)} size={16} className="mt-0.5 flex-shrink-0" />

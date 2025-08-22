@@ -14,193 +14,194 @@ const RegionalInsights = () => {
   const [activeSection, setActiveSection] = useState('overview');
 
   // Mock regional data
+  // Indian states as regions
   const regions = [
     {
-      id: 'midwest-corn-belt',
-      name: 'Midwest Corn Belt',
-      description: 'Prime agricultural region known for high-yield corn and soybean production',
-      totalFarms: '2,847',
-      totalAcres: '1.2M',
-      avgYield: '185',
-      successRate: 92,
+      id: 'madhya-pradesh',
+      name: 'Madhya Pradesh',
+      description: 'Heart of India, major producer of wheat, soybean, and pulses.',
+      totalFarms: '3,200',
+      totalAcres: '1.5M',
+      avgYield: '220',
+      successRate: 90,
       performance: 'high',
       dominantCrops: [
-        { name: 'Corn', percentage: 45, acres: '540K' },
-        { name: 'Soybeans', percentage: 35, acres: '420K' },
-        { name: 'Wheat', percentage: 15, acres: '180K' },
-        { name: 'Other', percentage: 5, acres: '60K' }
+        { name: 'Wheat', percentage: 40, acres: '600K' },
+        { name: 'Soybean', percentage: 30, acres: '450K' },
+        { name: 'Pulses', percentage: 20, acres: '300K' },
+        { name: 'Other', percentage: 10, acres: '150K' }
       ],
       highlights: [
-        'Highest corn yields in the nation with optimal soil conditions',
-        'Advanced precision agriculture adoption rate of 78%',
-        'Strong cooperative network and agricultural support services',
-        'Excellent transportation infrastructure for grain marketing'
+        'Largest wheat producer in India',
+        'Significant soybean and pulse cultivation',
+        'Rich black soil (regur) ideal for crops',
+        'Rapid adoption of modern irrigation'
       ],
       soilData: {
-        ph: 6.8,
-        nitrogen: 32,
-        phosphorus: 45,
-        potassium: 280,
-        organicMatter: 4.2
+        ph: 6.7,
+        nitrogen: 30,
+        phosphorus: 40,
+        potassium: 250,
+        organicMatter: 3.8
       },
       recommendedCrops: [
-        { name: 'Corn (Field)', suitability: 95 },
-        { name: 'Soybeans', suitability: 92 },
-        { name: 'Winter Wheat', suitability: 85 },
-        { name: 'Alfalfa', suitability: 78 }
+        { name: 'Wheat', suitability: 97 },
+        { name: 'Soybean', suitability: 92 },
+        { name: 'Gram', suitability: 88 },
+        { name: 'Mustard', suitability: 80 }
       ],
       soilImprovements: [
-        'Consider cover crops to increase organic matter',
-        'Monitor phosphorus levels to prevent runoff',
-        'Implement variable rate fertilizer application',
-        'Regular soil testing every 2-3 years recommended'
+        'Promote organic manure for soil health',
+        'Monitor irrigation to prevent waterlogging',
+        'Adopt crop rotation for sustainability',
+        'Regular soil testing recommended'
       ],
       weather: {
-        precipitation: '3.8',
-        temperature: 68,
-        humidity: 72,
-        growingDays: 165
+        precipitation: '4.2',
+        temperature: 27,
+        humidity: 60,
+        growingDays: 180
       }
     },
     {
-      id: 'great-plains',
-      name: 'Great Plains',
-      description: 'Extensive wheat and cattle region with diverse agricultural opportunities',
-      totalFarms: '1,923',
-      totalAcres: '2.1M',
-      avgYield: '165',
+      id: 'uttar-pradesh',
+      name: 'Uttar Pradesh',
+      description: 'India’s most populous state, major producer of sugarcane, rice, and wheat.',
+      totalFarms: '4,100',
+      totalAcres: '2.0M',
+      avgYield: '210',
       successRate: 85,
       performance: 'moderate',
       dominantCrops: [
-        { name: 'Wheat', percentage: 55, acres: '1.16M' },
-        { name: 'Corn', percentage: 25, acres: '525K' },
-        { name: 'Sorghum', percentage: 15, acres: '315K' },
-        { name: 'Other', percentage: 5, acres: '105K' }
+        { name: 'Sugarcane', percentage: 35, acres: '700K' },
+        { name: 'Wheat', percentage: 30, acres: '600K' },
+        { name: 'Rice', percentage: 25, acres: '500K' },
+        { name: 'Other', percentage: 10, acres: '200K' }
       ],
       highlights: [
-        'Leading wheat production region with drought-resistant varieties',
-        'Integrated crop-livestock systems provide diversification',
-        'Strong wind energy potential for additional farm income',
-        'Excellent grain storage and transportation facilities'
+        'Largest sugarcane producer in India',
+        'Extensive canal irrigation network',
+        'Diverse cropping patterns',
+        'High population density and small farm holdings'
       ],
       soilData: {
-        ph: 7.2,
+        ph: 7.1,
         nitrogen: 28,
-        phosphorus: 38,
-        potassium: 245,
-        organicMatter: 3.1
-      },
-      recommendedCrops: [
-        { name: 'Winter Wheat', suitability: 98 },
-        { name: 'Grain Sorghum', suitability: 88 },
-        { name: 'Corn', suitability: 75 },
-        { name: 'Sunflowers', suitability: 82 }
-      ],
-      soilImprovements: [
-        'Increase organic matter through crop residue management',
-        'Consider no-till practices to conserve moisture',
-        'Monitor soil erosion on sloped fields',
-        'Implement windbreaks for soil protection'
-      ],
-      weather: {
-        precipitation: '2.4',
-        temperature: 62,
-        humidity: 58,
-        growingDays: 145
-      }
-    },
-    {
-      id: 'california-central-valley',
-      name: 'California Central Valley',
-      description: 'Intensive specialty crop production with advanced irrigation systems',
-      totalFarms: '3,156',
-      totalAcres: '850K',
-      avgYield: '220',
-      successRate: 88,
-      performance: 'high',
-      dominantCrops: [
-        { name: 'Almonds', percentage: 30, acres: '255K' },
-        { name: 'Grapes', percentage: 25, acres: '213K' },
-        { name: 'Tomatoes', percentage: 20, acres: '170K' },
-        { name: 'Other', percentage: 25, acres: '212K' }
-      ],
-      highlights: [
-        'World-class specialty crop production with premium markets',
-        'Advanced drip irrigation and precision agriculture',
-        'Strong research partnerships with UC Davis',
-        'Excellent processing and export infrastructure'
-      ],
-      soilData: {
-        ph: 7.8,
-        nitrogen: 45,
-        phosphorus: 52,
-        potassium: 320,
-        organicMatter: 2.8
-      },
-      recommendedCrops: [
-        { name: 'Almonds', suitability: 96 },
-        { name: 'Wine Grapes', suitability: 94 },
-        { name: 'Processing Tomatoes', suitability: 91 },
-        { name: 'Pistachios', suitability: 89 }
-      ],
-      soilImprovements: [
-        'Address high pH through sulfur applications',
-        'Improve organic matter with compost additions',
-        'Monitor salinity levels in irrigated fields',
-        'Consider cover crops in tree crop alleys'
-      ],
-      weather: {
-        precipitation: '1.2',
-        temperature: 75,
-        humidity: 45,
-        growingDays: 280
-      }
-    },
-    {
-      id: 'southeast-cotton-belt',
-      name: 'Southeast Cotton Belt',
-      description: 'Traditional cotton and peanut region adapting to modern agriculture',
-      totalFarms: '1,654',
-      totalAcres: '980K',
-      avgYield: '145',
-      successRate: 78,
-      performance: 'moderate',
-      dominantCrops: [
-        { name: 'Cotton', percentage: 40, acres: '392K' },
-        { name: 'Peanuts', percentage: 25, acres: '245K' },
-        { name: 'Corn', percentage: 20, acres: '196K' },
-        { name: 'Other', percentage: 15, acres: '147K' }
-      ],
-      highlights: [
-        'Strong cotton production with modern ginning facilities',
-        'Diversified rotation systems improving soil health',
-        'Growing adoption of precision agriculture technologies',
-        'Excellent climate for double-cropping opportunities'
-      ],
-      soilData: {
-        ph: 6.2,
-        nitrogen: 24,
-        phosphorus: 35,
-        potassium: 185,
+        phosphorus: 36,
+        potassium: 210,
         organicMatter: 2.9
       },
       recommendedCrops: [
-        { name: 'Cotton', suitability: 93 },
-        { name: 'Peanuts', suitability: 90 },
-        { name: 'Sweet Corn', suitability: 82 },
-        { name: 'Soybeans', suitability: 78 }
+        { name: 'Sugarcane', suitability: 95 },
+        { name: 'Wheat', suitability: 90 },
+        { name: 'Rice', suitability: 85 },
+        { name: 'Potato', suitability: 80 }
       ],
       soilImprovements: [
-        'Lime application to raise pH for optimal nutrient availability',
-        'Increase potassium levels through targeted fertilization',
-        'Implement cover crops to build organic matter',
-        'Consider strip-till to reduce soil compaction'
+        'Promote green manuring',
+        'Improve drainage in low-lying areas',
+        'Adopt integrated pest management',
+        'Increase organic matter with compost'
       ],
       weather: {
-        precipitation: '4.8',
-        temperature: 72,
-        humidity: 78,
-        growingDays: 210
+        precipitation: '5.0',
+        temperature: 25,
+        humidity: 68,
+        growingDays: 170
+      }
+    },
+    {
+      id: 'west-bengal',
+      name: 'West Bengal',
+      description: 'Eastern state, leading in rice and jute production, fertile alluvial plains.',
+      totalFarms: '2,800',
+      totalAcres: '1.1M',
+      avgYield: '230',
+      successRate: 88,
+      performance: 'high',
+      dominantCrops: [
+        { name: 'Rice', percentage: 50, acres: '550K' },
+        { name: 'Jute', percentage: 20, acres: '220K' },
+        { name: 'Potato', percentage: 15, acres: '165K' },
+        { name: 'Other', percentage: 15, acres: '165K' }
+      ],
+      highlights: [
+        'Top rice and jute producer',
+        'Fertile Ganges delta soil',
+        'High rainfall and humidity',
+        'Strong tradition of fish farming (pisciculture)'
+      ],
+      soilData: {
+        ph: 6.5,
+        nitrogen: 34,
+        phosphorus: 38,
+        potassium: 230,
+        organicMatter: 4.1
+      },
+      recommendedCrops: [
+        { name: 'Rice', suitability: 98 },
+        { name: 'Jute', suitability: 90 },
+        { name: 'Potato', suitability: 85 },
+        { name: 'Mustard', suitability: 80 }
+      ],
+      soilImprovements: [
+        'Promote organic farming',
+        'Improve drainage in waterlogged areas',
+        'Adopt SRI for rice',
+        'Increase use of biofertilizers'
+      ],
+      weather: {
+        precipitation: '6.1',
+        temperature: 26,
+        humidity: 75,
+        growingDays: 200
+      }
+    },
+    {
+      id: 'maharashtra',
+      name: 'Maharashtra',
+      description: 'Western state, major producer of cotton, sugarcane, and pulses.',
+      totalFarms: '3,500',
+      totalAcres: '1.8M',
+      avgYield: '200',
+      successRate: 82,
+      performance: 'moderate',
+      dominantCrops: [
+        { name: 'Cotton', percentage: 35, acres: '630K' },
+        { name: 'Sugarcane', percentage: 30, acres: '540K' },
+        { name: 'Pulses', percentage: 20, acres: '360K' },
+        { name: 'Other', percentage: 15, acres: '270K' }
+      ],
+      highlights: [
+        'Largest cotton producer in India',
+        'Significant sugarcane and pulse cultivation',
+        'Diverse agro-climatic zones',
+        'Rapid mechanization in agriculture'
+      ],
+      soilData: {
+        ph: 7.3,
+        nitrogen: 26,
+        phosphorus: 32,
+        potassium: 220,
+        organicMatter: 2.7
+      },
+      recommendedCrops: [
+        { name: 'Cotton', suitability: 94 },
+        { name: 'Sugarcane', suitability: 89 },
+        { name: 'Tur (Pigeon Pea)', suitability: 85 },
+        { name: 'Soybean', suitability: 80 }
+      ],
+      soilImprovements: [
+        'Promote drip irrigation',
+        'Adopt crop diversification',
+        'Increase organic matter',
+        'Monitor for salinity in irrigated areas'
+      ],
+      weather: {
+        precipitation: '3.5',
+        temperature: 28,
+        humidity: 58,
+        growingDays: 160
       }
     }
   ];
@@ -352,6 +353,10 @@ const RegionalInsights = () => {
       </section>
       {/* Footer */}
       <footer className="bg-primary text-white py-12">
+        <div className="flex items-center space-x-3 mb-4">
+          <img src="/assets/images/krishi-drishti-footer-logo.png" alt="Krishi-Drishti Logo" className="h-10 w-auto bg-white rounded-lg p-1" style={{background: 'transparent'}} />
+          <span className="text-xl font-bold">Krishi-Drishti</span>
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-2">

@@ -5,17 +5,16 @@ import Button from '../../../components/ui/Button';
 import Select from '../../../components/ui/Select';
 
 const HeroSection = () => {
-  const [selectedRegion, setSelectedRegion] = useState('midwest');
+  const [selectedRegion, setSelectedRegion] = useState('madhya-pradesh');
   const [selectedCrop, setSelectedCrop] = useState('corn');
   const [predictionData, setPredictionData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const regionOptions = [
-    { value: 'midwest', label: 'Midwest' },
-    { value: 'great-plains', label: 'Great Plains' },
-    { value: 'california', label: 'California Central Valley' },
-    { value: 'southeast', label: 'Southeast' },
-    { value: 'pacific-northwest', label: 'Pacific Northwest' }
+    { value: 'madhya-pradesh', label: 'Madhya Pradesh' },
+    { value: 'uttar-pradesh', label: 'Uttar Pradesh' },
+    { value: 'west-bengal', label: 'West Bengal' },
+    { value: 'maharashtra', label: 'Maharashtra' }
   ];
 
   const cropOptions = [
@@ -27,11 +26,18 @@ const HeroSection = () => {
   ];
 
   const mockPredictions = {
-    'midwest-corn': { yield: 185, confidence: 94, trend: 'up', change: '+12%' },
-    'midwest-soybeans': { yield: 52, confidence: 91, trend: 'up', change: '+8%' },
-    'great-plains-wheat': { yield: 48, confidence: 89, trend: 'stable', change: '+3%' },
-    'california-corn': { yield: 210, confidence: 96, trend: 'up', change: '+15%' },
-    'southeast-cotton': { yield: 890, confidence: 87, trend: 'down', change: '-2%' }
+    'madhya-pradesh-wheat': { yield: 220, confidence: 92, trend: 'up', change: '+10%' },
+    'madhya-pradesh-soybean': { yield: 180, confidence: 90, trend: 'up', change: '+8%' },
+    'madhya-pradesh-pulses': { yield: 140, confidence: 88, trend: 'stable', change: '+2%' },
+    'uttar-pradesh-wheat': { yield: 210, confidence: 89, trend: 'up', change: '+7%' },
+    'uttar-pradesh-sugarcane': { yield: 320, confidence: 91, trend: 'up', change: '+12%' },
+    'uttar-pradesh-rice': { yield: 190, confidence: 87, trend: 'stable', change: '+3%' },
+    'west-bengal-rice': { yield: 230, confidence: 93, trend: 'up', change: '+11%' },
+    'west-bengal-jute': { yield: 150, confidence: 85, trend: 'stable', change: '+1%' },
+    'west-bengal-potato': { yield: 170, confidence: 88, trend: 'up', change: '+5%' },
+    'maharashtra-cotton': { yield: 200, confidence: 86, trend: 'down', change: '-3%' },
+    'maharashtra-sugarcane': { yield: 310, confidence: 90, trend: 'up', change: '+9%' },
+    'maharashtra-pulses': { yield: 160, confidence: 84, trend: 'stable', change: '+2%' }
   };
 
   const generatePrediction = () => {
@@ -46,36 +52,32 @@ const HeroSection = () => {
       };
       setPredictionData(prediction);
       setIsLoading(false);
-    }, 1500);
+    }, 1200);
   };
 
-  useEffect(() => {
-    generatePrediction();
-  }, [selectedRegion, selectedCrop]);
-
-  const getTrendIcon = (trend) => {
-    switch (trend) {
-      case 'up': return 'TrendingUp';
-      case 'down': return 'TrendingDown';
-      default: return 'Minus';
-    }
-  };
-
+  // Helper functions for trend color and icon
   const getTrendColor = (trend) => {
-    switch (trend) {
-      case 'up': return 'text-success';
-      case 'down': return 'text-error';
-      default: return 'text-muted-foreground';
-    }
+    if (trend === 'up') return 'text-green-600';
+    if (trend === 'down') return 'text-red-600';
+    return 'text-yellow-600';
+  };
+  const getTrendIcon = (trend) => {
+    if (trend === 'up') return 'ArrowUpRight';
+    if (trend === 'down') return 'ArrowDownRight';
+    return 'Minus';
   };
 
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-primary/5 via-white to-accent/10 pt-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'#000000\' fill-opacity=\'0.1\'%3E%3Cpath d=\'M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+          }}
+        />
       </div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -86,44 +88,16 @@ const HeroSection = () => {
                 <Icon name="Zap" size={16} />
                 <span>AI-Powered Agricultural Intelligence</span>
               </div>
-              
               <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
                 Intelligent farming starts with{' '}
                 <span className="text-primary">intelligent forecasting</span>
               </h1>
-              
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Transform complex crop yield data into actionable insights. Make confident farming decisions with AI-powered predictions that adapt to your local conditions and climate patterns.
               </p>
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                variant="default" 
-                size="lg"
-                iconName="Zap"
-                iconPosition="left"
-                className="flex-1 sm:flex-none"
-              >
-                Try Free Prediction
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                iconName="Play"
-                iconPosition="left"
-                className="flex-1 sm:flex-none"
-              >
-                View Live Demo
-              </Button>
-            </div>
-
             {/* Trust Indicators */}
             <div className="flex flex-wrap items-center gap-6 pt-4">
-              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <Icon name="Shield" size={16} className="text-primary" />
-                <span>USDA Certified</span>
-              </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <Icon name="Award" size={16} className="text-primary" />
                 <span>University Research Backed</span>
@@ -134,14 +108,12 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
-
-          {/* Right Content - Interactive Demo */}
+          {/* Right Content - Live Prediction Demo */}
           <div className="bg-white rounded-2xl harvest-shadow p-6 lg:p-8 space-y-6">
             <div className="text-center space-y-2">
               <h3 className="text-2xl font-bold text-foreground">Live Prediction Demo</h3>
               <p className="text-muted-foreground">Select your region and crop to see instant AI predictions</p>
             </div>
-
             <div className="space-y-4">
               <Select
                 label="Select Region"
@@ -149,15 +121,16 @@ const HeroSection = () => {
                 value={selectedRegion}
                 onChange={setSelectedRegion}
               />
-
               <Select
                 label="Select Crop"
                 options={cropOptions}
                 value={selectedCrop}
                 onChange={setSelectedCrop}
               />
+              <Button onClick={generatePrediction} disabled={isLoading} className="w-full">
+                {isLoading ? 'Predicting...' : 'Get Prediction'}
+              </Button>
             </div>
-
             {/* Prediction Results */}
             <div className="bg-muted/30 rounded-xl p-6 space-y-4">
               {isLoading ? (
@@ -175,7 +148,6 @@ const HeroSection = () => {
                     </div>
                     <div className="text-sm text-muted-foreground">Predicted Yield</div>
                   </div>
-
                   <div className="grid grid-cols-2 gap-4">
                     <div className="text-center p-3 bg-white rounded-lg">
                       <div className="text-lg font-semibold text-foreground">
@@ -191,7 +163,6 @@ const HeroSection = () => {
                       <div className="text-xs text-muted-foreground">vs Last Year</div>
                     </div>
                   </div>
-
                   <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
                     <Icon name="Clock" size={14} />
                     <span>Updated 2 minutes ago</span>
@@ -199,17 +170,11 @@ const HeroSection = () => {
                 </div>
               ) : null}
             </div>
-
-            <Link to="/forecast-dashboard-ai-prediction-interface">
-              <Button variant="outline" fullWidth iconName="ArrowRight" iconPosition="right">
-                View Full Dashboard
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default HeroSection;

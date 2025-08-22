@@ -39,13 +39,11 @@ const Homepage = () => {
               {/* Company Info */}
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                    <span className="text-primary font-bold text-lg">A</span>
-                  </div>
-                  <span className="text-xl font-bold">AgriPredict</span>
+                  <img src="/assets/images/krishi-drishti-logo.png" alt="Krishi-Drishti Logo" className="h-10 w-auto bg-white rounded-lg p-1" style={{background: 'transparent'}} />
+                  <span className="text-xl font-bold">Krishi-Drishti</span>
                 </div>
                 <p className="text-white/80 text-sm leading-relaxed">
-                  Empowering farmers with AI-driven agricultural intelligence for smarter, more profitable farming decisions.
+                  Empowering Indian farmers with AI-driven agricultural intelligence for smarter, more profitable farming decisions.
                 </p>
                 <div className="flex items-center space-x-4">
                   <a href="#" className="text-white/60 hover:text-white growth-transition">

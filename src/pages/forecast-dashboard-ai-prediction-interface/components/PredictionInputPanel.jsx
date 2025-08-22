@@ -15,6 +15,50 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
     previousYield: ''
   });
 
+  // Example Indian locations (districts/cities)
+  const locationOptions = [
+    { value: 'Delhi', label: 'Delhi' },
+    { value: 'Mumbai', label: 'Mumbai' },
+    { value: 'Bengaluru', label: 'Bengaluru' },
+    { value: 'Hyderabad', label: 'Hyderabad' },
+    { value: 'Chennai', label: 'Chennai' },
+    { value: 'Lucknow', label: 'Lucknow' },
+    { value: 'Patna', label: 'Patna' },
+    { value: 'Ahmedabad', label: 'Ahmedabad' },
+    { value: 'Pune', label: 'Pune' },
+    { value: 'Jaipur', label: 'Jaipur' },
+    { value: 'Kanpur', label: 'Kanpur' },
+    { value: 'Nagpur', label: 'Nagpur' },
+    { value: 'Indore', label: 'Indore' },
+    { value: 'Bhopal', label: 'Bhopal' },
+    { value: 'Varanasi', label: 'Varanasi' },
+    { value: 'Raipur', label: 'Raipur' },
+    { value: 'Ranchi', label: 'Ranchi' },
+    { value: 'Kolkata', label: 'Kolkata' },
+    { value: 'Guwahati', label: 'Guwahati' },
+    { value: 'Amritsar', label: 'Amritsar' },
+    { value: 'Ludhiana', label: 'Ludhiana' },
+    { value: 'Meerut', label: 'Meerut' },
+    { value: 'Agra', label: 'Agra' },
+    { value: 'Nashik', label: 'Nashik' },
+    { value: 'Aurangabad', label: 'Aurangabad' },
+    { value: 'Jodhpur', label: 'Jodhpur' },
+    { value: 'Coimbatore', label: 'Coimbatore' },
+    { value: 'Madurai', label: 'Madurai' },
+    { value: 'Vijayawada', label: 'Vijayawada' },
+    { value: 'Visakhapatnam', label: 'Visakhapatnam' },
+    { value: 'Thiruvananthapuram', label: 'Thiruvananthapuram' },
+    { value: 'Kozhikode', label: 'Kozhikode' },
+    { value: 'Kochi', label: 'Kochi' },
+    { value: 'Srinagar', label: 'Srinagar' },
+    { value: 'Jammu', label: 'Jammu' },
+    { value: 'Dehradun', label: 'Dehradun' },
+    { value: 'Shimla', label: 'Shimla' },
+    { value: 'Chandigarh', label: 'Chandigarh' },
+    { value: 'Panaji', label: 'Panaji' },
+    { value: 'Puducherry', label: 'Puducherry' },
+  ];
+
   const cropOptions = [
     { value: 'corn', label: 'Corn (Maize)' },
     { value: 'wheat', label: 'Winter Wheat' },
@@ -82,13 +126,14 @@ const PredictionInputPanel = ({ onPredictionSubmit, isLoading }) => {
             searchable
           />
 
-          <Input
+          <Select
             label="Farm Location"
-            type="text"
-            placeholder="e.g., Iowa County, IA"
+            placeholder="Select your location"
+            options={locationOptions}
             value={formData?.location}
-            onChange={(e) => handleInputChange('location', e?.target?.value)}
+            onChange={(value) => handleInputChange('location', value)}
             required
+            searchable
           />
 
           <Select

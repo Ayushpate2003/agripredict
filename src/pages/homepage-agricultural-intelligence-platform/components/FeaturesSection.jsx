@@ -221,35 +221,7 @@ const FeaturesSection = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="bg-white rounded-2xl harvest-shadow p-8 max-w-2xl mx-auto space-y-6">
-            <h3 className="text-2xl font-bold text-foreground">
-              Ready to Experience All Features?
-            </h3>
-            <p className="text-muted-foreground">
-              Get instant access to our complete agricultural intelligence platform with a free trial.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="default" 
-                size="lg"
-                iconName="Zap"
-                iconPosition="left"
-              >
-                Start Free Trial
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                iconName="Calendar"
-                iconPosition="left"
-              >
-                Schedule Demo
-              </Button>
-            </div>
-          </div>
-        </div>
+  {/* Bottom CTA removed as per request */}
       </div>
     </section>
   );

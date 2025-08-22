@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Icon from '../../../components/AppIcon';
 import Button from '../../../components/ui/Button';
 import Select from '../../../components/ui/Select';
+import { exportPlanToExcel } from './exportToExcel';
 
 const PlanningTools = ({ planningData }) => {
   const [selectedSeason, setSelectedSeason] = useState('2025-spring');
@@ -189,7 +190,12 @@ const PlanningTools = ({ planningData }) => {
           Planning data updated based on historical patterns and weather forecasts
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" iconName="Download" iconPosition="left">
+          <Button
+            variant="outline"
+            iconName="Download"
+            iconPosition="left"
+            onClick={() => exportPlanToExcel(planningData)}
+          >
             Export Plan
           </Button>
           <Button variant="default" iconName="Share" iconPosition="left">
