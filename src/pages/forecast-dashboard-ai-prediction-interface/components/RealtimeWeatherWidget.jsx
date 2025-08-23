@@ -5,36 +5,44 @@ const RealtimeWeatherWidget = ({ location }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetch weather data from WeatherAPI using the provided API key
   const fetchWeatherData = async (loc) => {
     setLoading(true);
+    setError(null);
     try {
-      const apiKey = 'd7e2b34dbf134431e995228b3ea878be';
-  const url = `https://api.weatherapi.com/v1/forecast.json?key=5741b63ce4b95cd6edadd2caa7df1e71&q=${encodeURIComponent(loc)}&days=5&aqi=no&alerts=yes`;
+      const url = `https://api.weatherapi.com/v1/forecast.json?key=5c3a384a4b7baa6e80503910a4968168&q=${encodeURIComponent(loc)}&days=5&aqi=no&alerts=yes`;
+      console.log('Fetching weather data for:', loc);
+      
       const response = await fetch(url);
       const data = await response.json();
+      
+      console.log('Weather API Response:', data);
+      
       if (!response.ok || data.error) {
         throw new Error(data.error?.message || 'Weather fetch failed');
       }
+      
       const weatherData = {
         current: {
-          temperature: data.current.temp_c,
+          temperature: Math.round(data.current.temp_c),
           humidity: data.current.humidity,
-          windSpeed: data.current.wind_kph,
+          windSpeed: Math.round(data.current.wind_kph),
           windDirection: data.current.wind_dir,
-          pressure: data.current.pressure_mb,
-          visibility: data.current.vis_km,
+          pressure: Math.round(data.current.pressure_mb),
+          visibility: Math.round(data.current.vis_km),
           uvIndex: data.current.uv,
           condition: data.current.condition.text,
-          icon: 'CloudSun',
+          icon: getWeatherIcon(data.current.condition.code),
+          feelsLike: Math.round(data.current.feelslike_c),
         },
         forecast: data.forecast.forecastday.map((day, idx) => ({
-          day: idx === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en-IN', { weekday: 'short' }),
-          high: day.day.maxtemp_c,
-          low: day.day.mintemp_c,
+          day: idx === 0 ? 'Today' : new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' }),
+          high: Math.round(day.day.maxtemp_c),
+          low: Math.round(day.day.mintemp_c),
           condition: day.day.condition.text,
-          icon: 'CloudSun',
+          icon: getWeatherIcon(day.day.condition.code),
           precipitation: day.day.daily_chance_of_rain,
         })),
         alerts: (data.alerts && data.alerts.alert && data.alerts.alert.length > 0)
@@ -46,9 +54,13 @@ const RealtimeWeatherWidget = ({ location }) => {
             }))
           : [],
       };
+      
+      console.log('Processed weather data:', weatherData);
       setWeatherData(weatherData);
       setError(null);
     } catch (err) {
+      console.error('Weather fetch error:', err);
+      setError(err.message);
       // fallback to mock data for demo/testing
       setWeatherData({
         current: {
@@ -61,6 +73,7 @@ const RealtimeWeatherWidget = ({ location }) => {
           uvIndex: 7,
           condition: 'Partly Cloudy',
           icon: 'CloudSun',
+          feelsLike: 35,
         },
         forecast: [
           { day: 'Today', high: 34, low: 27, condition: 'Partly Cloudy', icon: 'CloudSun', precipitation: 10 },
@@ -70,10 +83,22 @@ const RealtimeWeatherWidget = ({ location }) => {
           { day: 'Fri', high: 32, low: 26, condition: 'Partly Cloudy', icon: 'CloudSun', precipitation: 20 }
         ],
         alerts: [],
-        error: err.message,
       });
     }
     setLoading(false);
+  };
+
+  // Function to map weather condition codes to appropriate icons
+  const getWeatherIcon = (code) => {
+    if (code >= 1000 && code <= 1003) return 'Sun'; // Clear/Sunny
+    if (code >= 1006 && code <= 1009) return 'CloudSun'; // Partly cloudy/cloudy
+    if (code >= 1030 && code <= 1147) return 'Cloud'; // Mist/fog conditions
+    if (code >= 1150 && code <= 1201) return 'CloudRain'; // Light rain
+    if (code >= 1204 && code <= 1237) return 'CloudSnow'; // Sleet/snow
+    if (code >= 1240 && code <= 1246) return 'CloudRain'; // Rain showers
+    if (code >= 1249 && code <= 1264) return 'CloudSnow'; // Snow/sleet showers
+    if (code >= 1273 && code <= 1282) return 'CloudLightning'; // Thunderstorms
+    return 'CloudSun'; // Default
   };
 
   useEffect(() => {
@@ -85,7 +110,11 @@ const RealtimeWeatherWidget = ({ location }) => {
 
   useEffect(() => {
     if (location) {
+      console.log('Location provided:', location);
       fetchWeatherData(location);
+    } else {
+      console.log('No location provided, using default');
+      fetchWeatherData('Iowa County, IA');
     }
   }, [location]);
 
@@ -126,21 +155,28 @@ const RealtimeWeatherWidget = ({ location }) => {
   if (loading) {
     return (
       <div className="bg-white rounded-lg harvest-shadow border border-border p-8 flex items-center justify-center min-h-[300px]">
-        <span className="text-muted-foreground">Loading weather data...</span>
+        <div className="flex items-center space-x-2">
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+          <span className="text-muted-foreground">Loading weather data...</span>
+        </div>
       </div>
     );
   }
-  if (!weatherData) {
+
+  if (error && !weatherData) {
     return (
-      <div className="bg-white rounded-lg harvest-shadow border border-border p-8 flex items-center justify-center min-h-[300px]">
-        <span className="text-error">Unable to load weather data. Please try again or check your API key.</span>
-      </div>
-    );
-  }
-  if (weatherData.error) {
-    return (
-      <div className="bg-white rounded-lg harvest-shadow border border-border p-8 flex items-center justify-center min-h-[300px]">
-        <span className="text-error">{weatherData.error} (showing mock data below)</span>
+      <div className="bg-white rounded-lg harvest-shadow border border-border p-8 flex flex-col items-center justify-center min-h-[300px] space-y-4">
+        <Icon name="AlertTriangle" size={48} className="text-error" />
+        <div className="text-center">
+          <p className="text-error font-medium">Unable to load weather data</p>
+          <p className="text-sm text-muted-foreground mt-1">{error}</p>
+          <button 
+            onClick={() => fetchWeatherData(location || 'Iowa County, IA')} 
+            className="mt-3 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
@@ -175,7 +211,7 @@ const RealtimeWeatherWidget = ({ location }) => {
                 <Icon name={weatherData?.current?.icon} size={32} className="text-primary" />
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">{weatherData?.current?.temperature}°F</p>
+                <p className="text-3xl font-bold text-foreground">{weatherData?.current?.temperature}°C</p>
                 <p className="text-sm text-muted-foreground">{weatherData?.current?.condition}</p>
               </div>
             </div>
@@ -187,12 +223,12 @@ const RealtimeWeatherWidget = ({ location }) => {
               <div className="flex items-center space-x-2">
                 <Icon name="Wind" size={14} className="text-accent" />
                 <span className="text-sm text-muted-foreground">
-                  {weatherData?.current?.windSpeed} mph {weatherData?.current?.windDirection}
+                  {weatherData?.current?.windSpeed} km/h {weatherData?.current?.windDirection}
                 </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Icon name="Gauge" size={14} className="text-accent" />
-                <span className="text-sm text-muted-foreground">{weatherData?.current?.pressure} in</span>
+                <span className="text-sm text-muted-foreground">{weatherData?.current?.pressure} mb</span>
               </div>
             </div>
           </div>
@@ -201,7 +237,7 @@ const RealtimeWeatherWidget = ({ location }) => {
             <div className="bg-muted/30 rounded-lg p-3 text-center">
               <Icon name="Eye" size={16} className="text-accent mx-auto mb-1" />
               <p className="text-xs text-muted-foreground">Visibility</p>
-              <p className="text-sm font-medium text-foreground">{weatherData?.current?.visibility} mi</p>
+              <p className="text-sm font-medium text-foreground">{weatherData?.current?.visibility} km</p>
             </div>
             <div className="bg-muted/30 rounded-lg p-3 text-center">
               <Icon name="Sun" size={16} className="text-accent mx-auto mb-1" />
@@ -211,7 +247,7 @@ const RealtimeWeatherWidget = ({ location }) => {
             <div className="bg-muted/30 rounded-lg p-3 text-center">
               <Icon name="Thermometer" size={16} className="text-accent mx-auto mb-1" />
               <p className="text-xs text-muted-foreground">Feels Like</p>
-              <p className="text-sm font-medium text-foreground">75°F</p>
+              <p className="text-sm font-medium text-foreground">{weatherData?.current?.feelsLike}°C</p>
             </div>
           </div>
         </div>
